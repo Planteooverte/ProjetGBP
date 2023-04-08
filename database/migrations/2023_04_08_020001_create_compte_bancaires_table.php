@@ -14,15 +14,13 @@ return new class extends Migration
     public function up()
     {
         Schema::disableForeignKeyConstraints();
-        Schema::create('selectionners', function (Blueprint $table) {
+        Schema::create('compte_bancaires', function (Blueprint $table) {
             $table->id();
-            $table->decimal('Qtconso')->nullable();
-            $table->timestamps();
-            $table->string('unite')->nullable();
+            $table->string('RefCompte')->unique();
+            $table->string('NomBanque');
+            $table->string('Adresse')->nullable();
             $table->foreignId('idUser');
-            $table->foreignId('idDomaine');
             $table->foreign('idUser')->references('id')->on('users');
-            $table->foreign('idDomaine')->references('id')->on('domaines');
         });
     }
 
@@ -33,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('selectionners');
+        Schema::dropIfExists('compte_bancaires');
     }
 };

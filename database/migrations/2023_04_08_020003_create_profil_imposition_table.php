@@ -13,12 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('operation_bancaires', function (Blueprint $table) {
+        Schema::create('profil_imposition', function (Blueprint $table) {
             $table->id();
-            $table->timestamp('DateOperation');
-            $table->string('DescriptionOperation');
-            $table->decimal('Credit')->nullable();
-            $table->decimal('Debit')->nullable();
+            $table->string('NumeroFiscal');
+            $table->foreignId('idUser')->nullable();
+            $table->foreign('idUser')->references('id')->on('users');
         });
     }
 
@@ -29,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('operation_bancaires');
+        Schema::dropIfExists('profil_imposition');
     }
 };

@@ -15,10 +15,13 @@ class FicheDePaye extends Model
      * @var array<int, string>
      */
     protected $fillable = [
+        'id',
         'Periode',
         'SalaireBrut',
         'SalaireNet',
         'ChargeEmployeur',
+        'idDomaine',
+        'idEnt',
     ];
 
     //suppression de "create_at" et "update_at"

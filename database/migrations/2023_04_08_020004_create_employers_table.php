@@ -13,9 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('centre_impositions', function (Blueprint $table) {
+        Schema::disableForeignKeyConstraints();
+        Schema::create('employers', function (Blueprint $table) {
             $table->id();
-            $table->string('NumeroFiscal');
+            $table->timestamps();
+            $table->foreignId('idUser');
+            $table->foreign('idUser')->references('id')->on('users');
+            $table->foreignId('idEnt');
+            $table->foreign('idEnt')->references('id')->on('entreprises');
         });
     }
 
@@ -26,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('centre_impositions');
+        Schema::dropIfExists('employers');
     }
 };

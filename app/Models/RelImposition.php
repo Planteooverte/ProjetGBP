@@ -15,6 +15,8 @@ class RelImposition extends Model
      * @var array<int, string>
      */
     protected $fillable = [
+        'id',
+        'TypeImposition',
         'AnneeFiscal',
         'Montant',
         'DateEtablissement',

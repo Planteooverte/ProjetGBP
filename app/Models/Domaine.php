@@ -15,7 +15,11 @@ class Domaine extends Model
      * @var array<int, string>
      */
     protected $fillable = [
+        'id',
         'NomDomaine',
+        'QuantiteConsommee',
+        'Unite',
+        'idUser',
     ];
 
     //suppression de "create_at" et "update_at"

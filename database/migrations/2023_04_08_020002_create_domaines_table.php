@@ -16,6 +16,10 @@ return new class extends Migration
         Schema::create('domaines', function (Blueprint $table) {
             $table->id();
             $table->string('NomDomaine')->nullable();
+            $table->decimal('QuantiteConsommee')->nullable();
+            $table->string('Unite')->nullable();
+            $table->foreignId('idUser')->nullable();
+            $table->foreign('idUser')->references('id')->on('users');
         });
     }
 

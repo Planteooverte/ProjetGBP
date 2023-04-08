@@ -14,13 +14,13 @@ return new class extends Migration
     public function up()
     {
         Schema::disableForeignKeyConstraints();
-        Schema::create('compte_bancaires', function (Blueprint $table) {
+        Schema::create('subirs', function (Blueprint $table) {
             $table->id();
-            $table->string('RefCompte')->unique();
-            $table->string('NomBanque');
-            $table->string('Adresse')->nullable();
-            $table->foreignId('idOperation');
-            $table->foreign('idOperation')->references('id')->on('operation_bancaires');
+            $table->year('Annee')->nullable(); 
+            $table->foreignId('idUser');
+            $table->foreign('idUser')->references('id')->on('users');
+            $table->foreignId('idInflation');
+            $table->foreign('idInflation')->references('id')->on('inflations');
         });
     }
 
@@ -31,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('compte_bancaires');
+        Schema::dropIfExists('subirs');
     }
 };

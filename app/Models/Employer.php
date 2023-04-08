@@ -15,12 +15,11 @@ class Employer extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'idUser',
-        'idEnt',
+        'id',
         'created_at',
         'updated_at',
+        'idUser',
+        'idEnt',
     ];
 
-    //suppression de "create_at" et "update_at"
-    public $timestamps = false;
 }

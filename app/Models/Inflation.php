@@ -15,6 +15,7 @@ class Inflation extends Model
      * @var array<int, string>
      */
     protected $fillable = [
+        'id',
         'TauxMoyen',
     ];
 

@@ -14,12 +14,15 @@ return new class extends Migration
     public function up()
     {
         Schema::disableForeignKeyConstraints();
-        Schema::create('employers', function (Blueprint $table) {
+        Schema::create('fiche_de_payes', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
-            $table->foreignId('idUser');
-            $table->foreignId('idEnt');
-            $table->foreign('idUser')->references('id')->on('users');
+            $table->datetime('Periode');
+            $table->decimal('SalaireBrut');
+            $table->decimal('SalaireNet');
+            $table->decimal('ChargeEmployeur');
+            $table->foreignId('idDomaine')->nullable();
+            $table->foreign('idDomaine')->references('id')->on('domaines');
+            $table->foreignId('idEnt')->nullable();
             $table->foreign('idEnt')->references('id')->on('entreprises');
         });
     }
@@ -31,6 +34,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('employers');
+        Schema::dropIfExists('fiche_de_payes');
     }
 };

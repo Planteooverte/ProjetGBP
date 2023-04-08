@@ -15,10 +15,13 @@ class Subir extends Model
      * @var array<int, string>
      */
     protected $fillable = [
+        'id',
+        'Annee',
         'idUser',
         'idInflation',
-        'created_at',
-        'updated_at',
     ];
+
+    //suppression de "create_at" et "update_at"
+    public $timestamps = false;
     
 }

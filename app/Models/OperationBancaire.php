@@ -15,10 +15,13 @@ class OperationBancaire extends Model
      * @var array<int, string>
      */
     protected $fillable = [
+        'id',
         'DateOperation',
         'DescriptionOperation',
         'Credit',
         'Debit',
+        'idCompte',
+        'idDomaine',
     ];
 
     //suppression de "create_at" et "update_at"

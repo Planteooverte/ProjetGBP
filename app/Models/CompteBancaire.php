@@ -15,9 +15,11 @@ class CompteBancaire extends Model
      * @var array<int, string>
      */
     protected $fillable = [
+        'id',
         'RefCompte',
         'NomBanque',
         'Adresse',
+        'idUser',
     ];
 
     //suppression de "create_at" et "update_at"

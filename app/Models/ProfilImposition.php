@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Debiter extends Model
+class ProfilImposition extends Model
 {
     use HasFactory;
 
@@ -15,12 +15,11 @@ class Debiter extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'idOperation',
-        'idDomaine',
-        'idImpot',
-        'TypeD',
+        'id',
+        'NumeroFiscal',
+        'idUser',
     ];
 
     //suppression de "create_at" et "update_at"
-      public $timestamps = false;
+    public $timestamps = false;
 }

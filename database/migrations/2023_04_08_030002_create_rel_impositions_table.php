@@ -16,14 +16,18 @@ return new class extends Migration
         Schema::disableForeignKeyConstraints();
         Schema::create('rel_impositions', function (Blueprint $table) {
             $table->id();
+            $table->string('TypeImposition');
             $table->year('AnneeFiscal');                    /*Année Fiscal */
             $table->decimal('Montant');
             $table->datetime('DateEtablissement');          /*Date Etablissement */   
             $table->float('TauxImposition');
             $table->decimal('RevenuFiscalDeReference');
             $table->integer('NbrDePart');
+            $table->foreignId('idDomaine')->nullable();
+            $table->foreign('idDomaine')->references('id')->on('domaines');
             $table->foreignId('idCentImpot')->nullable();
-            $table->foreign('idCentImpot')->references('id')->on('centre_impositions');
+            $table->foreign('idCentImpot')->references('id')->on('profil_imposition');
+            
         });
     }
 
