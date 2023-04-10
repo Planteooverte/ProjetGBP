@@ -1,0 +1,9 @@
+.flex-container {
+    display: flex;
+    width: 70%;
+    background-color: #a93226;
+    margin-top: 8%;
+    margin-left: 15%;
+    opacity: 0.8;
+    flex-direction: column;
+}

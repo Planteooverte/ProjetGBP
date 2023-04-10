@@ -19,10 +19,12 @@ return new class extends Migration
             $table->string('DescriptionOperation');
             $table->decimal('Credit')->nullable();
             $table->decimal('Debit')->nullable();
-            $table->foreignId('idCompte');
+            $table->foreignId('idCompte')->nullable();
             $table->foreign('idCompte')->references('id')->on('compte_bancaires');
-            $table->foreignId('idDomaine');
+            $table->foreignId('idDomaine')->nullable();
             $table->foreign('idDomaine')->references('id')->on('domaines');
+            $table->foreignId('idFichier')->nullable();
+            $table->foreign('idFichier')->references('id')->on('Fichier_csvs');
         });
     }
 

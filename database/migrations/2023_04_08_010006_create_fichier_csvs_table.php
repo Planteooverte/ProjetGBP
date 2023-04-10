@@ -13,14 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('domaines', function (Blueprint $table) {
+        Schema::create('Fichier_csvs', function (Blueprint $table) {
             $table->id();
-            $table->string('NomDomaine')->nullable();
-            $table->decimal('QuantiteConsommee')->nullable();
-            $table->string('Unite')->nullable();
-            $table->year('Annee'); 
-            $table->foreignId('idUser')->nullable();
-            $table->foreign('idUser')->references('id')->on('users');
+            $table->timestamps();
+            $table->string('NomFichier');
+            $table->string('CheminFichier');
         });
     }
 
@@ -31,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('domaines');
+        Schema::dropIfExists('Fichier_csvs');
     }
 };
