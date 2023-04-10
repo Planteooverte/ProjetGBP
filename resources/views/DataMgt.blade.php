@@ -10,14 +10,19 @@
         </div>
         <div class="col-4 text-bg-success p-3 m-2 rounded">
             <h3>Compte Bancaire</h3>
-                <form method='POST' action="Api/compteBancaire">
+                <form method='POST' action="{{ route('CompteBancaire.store') }}">
+                    @csrf
                     <Label>Ajouter un compte bancaire </Label>
                     <div>
-                        <input class="form-control" name="NumCompte" type="text" placeholder="Numero du compte">
+                        <input class="form-control" name="RefCompte" type="text" placeholder="Numero du compte">
                         <input class="form-control" name="NomBanque" type="text" placeholder="Nom de la banque">
-                        <input class="form-control" name="Adress" type="text" placeholder="Adresse">
+                        <input class="form-control" name="Adresse" type="text" placeholder="Adresse">
+                        <input class="form-control" name="idUser" type="hidden"  value="1"> <!--WARNING: Branchement authentification - id User -->
                         <input id="CptbanC" type="submit" value="Créer" class="btn btn-dark">
                     </div>
+                    @error('compteBancaire')
+                            <p class="help is-danger">{{ $message }}</p>
+                    @enderror
                 </form>
             <h3>Domaine</h3>
                 <form method='POST' action="Api/domaine">

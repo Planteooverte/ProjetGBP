@@ -18,7 +18,11 @@ Route::get('/', [\App\Http\Controllers\HomeController::class, 'index']);
 
 Route::get('/Gdonnees', [\App\Http\Controllers\AdminData::class, 'index']);
 
-Route::get('/DataMgt', [\App\Http\Controllers\AdminData::class, 'formDataMgtC'])->name('CompteBancaireCreation');
+Route::get('/DataMgt', [\App\Http\Controllers\AdminData::class, 'formDataMgtC'])->name('GestionDonnee');
+
+Route::post('/DataMgt/comptebancaire', [\App\Http\Controllers\CompteBancaireController::class, 'store'])->name('CompteBancaire.store');
+
+// Route::resource('/DataMgt/CompteBancaire', \App\Http\Controllers\Sfg\CompteBancaire::class);
 
 // Route::get('/Gdata', [\App\Http\Controllers\AdminData::class, 'test'])->name('ref');
 

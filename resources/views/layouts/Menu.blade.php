@@ -25,7 +25,7 @@
               <div class="dropdown">
                   <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Gestion des données</button>
                     <ul class="dropdown-menu">
-                      <li><a class="dropdown-item" href="{{ route('CompteBancaireCreation') }}">Ajouter</a></li>
+                      <li><a class="dropdown-item" href="{{ route('GestionDonnee') }}">Ajouter</a></li>
                       <li><a class="dropdown-item" href="#">Modifier</a></li>
                       <li><a class="dropdown-item" href="#">Supprimer</a></li>
                     </ul>

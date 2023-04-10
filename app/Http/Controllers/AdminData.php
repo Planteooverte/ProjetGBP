@@ -14,7 +14,7 @@ class AdminData extends Controller
         return 'le lien marche';
     }
 
-    public function formDataMgtC(){
+    public function formDataMgtC() {
         return view('DataMgt');
     }
 }
