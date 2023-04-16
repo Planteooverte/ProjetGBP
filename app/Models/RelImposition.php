@@ -23,8 +23,20 @@ class RelImposition extends Model
         'TauxImposition',
         'RevenuFiscalDeReference',
         'NbrDePart',
+        'idDomaine',
+        'idCentImpot',
     ];
     
     //suppression de "create_at" et "update_at"
-      public $timestamps = false;
+    public $timestamps = false;
+
+    public function Domaines()
+    { 
+        return $this->belongsTo(Domaine::class); 
+    }
+
+    public function ProfilImpositions()
+    { 
+        return $this->belongsTo(ProfilImposition::class); 
+    }
 }

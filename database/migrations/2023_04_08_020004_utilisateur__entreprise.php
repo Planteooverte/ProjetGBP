@@ -13,14 +13,19 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::disableForeignKeyConstraints();
-        Schema::create('employers', function (Blueprint $table) {
+        Schema::create('utilisateur_entreprise', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
             $table->softDeletes();
-            $table->foreignId('idUser');
+            $table->foreignId('idUser')
+                    ->constrained()
+                    ->onUpdate('cascade')
+                    ->onDelete('cascade');
             $table->foreign('idUser')->references('id')->on('users');
-            $table->foreignId('idEnt');
+            $table->foreignId('idEnt')
+                    ->constrained()
+                    ->onUpdate('cascade')
+                    ->onDelete('cascade');
             $table->foreign('idEnt')->references('id')->on('entreprises');
         });
     }
@@ -32,6 +37,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('employers');
+        Schema::dropIfExists('utilisateur_entreprise');
     }
 };

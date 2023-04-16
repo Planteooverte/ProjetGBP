@@ -21,4 +21,9 @@ class Inflation extends Model
 
     //suppression de "create_at" et "update_at"
       public $timestamps = false;
+
+    public function Users()
+    { 
+        return $this->belongsToMany(User::class); 
+    }
 }

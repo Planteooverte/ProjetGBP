@@ -3,7 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Models\Domaine;
+use App\Models\CompteBancaire;
+use App\Models\RelImposition;
+use App\Models\FicheDePaye;
+use App\Models\Inflation;
 class AdminData extends Controller
 {
     public function index(Request $request) {       
@@ -14,7 +18,13 @@ class AdminData extends Controller
         return 'le lien marche';
     }
 
-    public function formDataMgtC() {
-        return view('DataMgt');
+    public function indexlist() {
+        return view('DataMgt', [
+            'Domaines' => Domaine::all(),
+            'CompteBancaires' => CompteBancaire::all(),
+            'RelImpositions' => RelImposition::all(),
+            'FicheDePayes' => FicheDePaye::all(),
+            'Inflations' => Inflation::all(),
+        ]);
     }
 }

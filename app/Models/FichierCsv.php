@@ -23,4 +23,9 @@ class FichierCsv extends Model
         'Deleted_at',
         'idEnt',
     ];
+
+    public function OperationBancaires()
+    { 
+        return $this->hasMany(OperationBancaire::class); 
+    }
 }

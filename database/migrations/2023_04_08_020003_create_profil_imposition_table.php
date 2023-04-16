@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('profil_imposition', function (Blueprint $table) {
+        Schema::create('profil_impositions', function (Blueprint $table) {
             $table->id();
             $table->string('NumeroFiscal');
             $table->foreignId('idUser')->nullable();
@@ -28,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('profil_imposition');
+        Schema::dropIfExists('profil_impositions');
     }
 };

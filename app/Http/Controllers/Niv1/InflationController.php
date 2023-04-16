@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Niv1;
 
-use App\Models\CompteBancaire;
+use App\Models\Inflation;
+use App\Models\Subir;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class CompteBancaireController extends Controller
+class InflationController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -36,9 +37,8 @@ class CompteBancaireController extends Controller
      */
     public function store(Request $Request)
     {
-        CompteBancaire::create($Request->all());
-        return redirect()->route('GestionDonnee')->with('info', 'le compte a été créé');
-        // return "Dans le controleur!";
+        Inflation::create($Request->all());
+        return redirect()->route('GestionDonnee')->with('info', 'L\'inflation a été rajouté');
     }
 
     /**

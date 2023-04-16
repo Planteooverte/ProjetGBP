@@ -19,9 +19,31 @@ class Domaine extends Model
         'NomDomaine',
         'QuantiteConsommee',
         'Unite',
+        'Annee',
         'idUser',
     ];
 
     //suppression de "create_at" et "update_at"
-      public $timestamps = false;
+    public $timestamps = false;
+
+    public function Users()
+    { 
+        return $this->belongsTo(User::class); 
+    }
+
+    public function OperationBancaires()
+    { 
+        return $this->hasMany(OperationBancaire::class); 
+    }
+
+    public function RelImpositions()
+    { 
+        return $this->hasMany(RelImposition::class); 
+    }
+
+    public function FicheDePayes()
+    { 
+        return $this->hasMany(FicheDePaye::class); 
+    }
+
 }

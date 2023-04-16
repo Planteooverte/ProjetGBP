@@ -22,4 +22,14 @@ class ProfilImposition extends Model
 
     //suppression de "create_at" et "update_at"
     public $timestamps = false;
+
+    public function Users()
+    { 
+        return $this->belongsTo(User::class); 
+    }
+
+    public function RelImpositions()
+    { 
+        return $this->hasMany(RelImposition::class); 
+    }
 }

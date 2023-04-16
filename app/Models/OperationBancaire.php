@@ -25,5 +25,20 @@ class OperationBancaire extends Model
     ];
 
     //suppression de "create_at" et "update_at"
-      public $timestamps = false;
+    public $timestamps = false;
+
+    public function Domaines()
+    { 
+        return $this->belongsTo(Domaine::class); 
+    }
+
+    public function CompteBancaires()
+    { 
+        return $this->belongsTo(CompteBancaire::class); 
+    }
+
+        public function FichierCsvs()
+    { 
+        return $this->belongsTo(FichierCsv::class); 
+    }
 }

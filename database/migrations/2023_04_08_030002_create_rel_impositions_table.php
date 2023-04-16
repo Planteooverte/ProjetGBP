@@ -26,7 +26,7 @@ return new class extends Migration
             $table->foreignId('idDomaine')->nullable();
             $table->foreign('idDomaine')->references('id')->on('domaines');
             $table->foreignId('idCentImpot')->nullable();
-            $table->foreign('idCentImpot')->references('id')->on('profil_imposition');
+            $table->foreign('idCentImpot')->references('id')->on('profil_impositions');
             
         });
     }

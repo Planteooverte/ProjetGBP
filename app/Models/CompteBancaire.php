@@ -24,4 +24,14 @@ class CompteBancaire extends Model
 
     //suppression de "create_at" et "update_at"
     public $timestamps = false;
+
+    public function Users()
+    { 
+        return $this->belongsTo(User::class); 
+    }
+
+    public function OperationBancaires()
+    { 
+        return $this->hasMany(OperationBancaire::class); 
+    }
 }

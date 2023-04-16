@@ -14,30 +14,34 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [\App\Http\Controllers\HomeController::class, 'index']);
+// Route::get('/', [\App\Http\Controllers\HomeController::class, 'index']);
 
+//Route Page Principale
 Route::get('/Gdonnees', [\App\Http\Controllers\AdminData::class, 'index']);
+Route::get('/DataMgt', [\App\Http\Controllers\AdminData::class, 'indexlist'])->name('GestionDonnee');
 
-Route::get('/DataMgt', [\App\Http\Controllers\AdminData::class, 'formDataMgtC'])->name('GestionDonnee');
+//Route Formulaire Create - Page DataMgt
+Route::post('/DataMgt/comptebancaire', [\App\Http\Controllers\Niv1\CompteBancaireController::class, 'store'])->name('CompteBancaire.store');
+Route::post('/DataMgt/domaine', [\App\Http\Controllers\Niv1\DomaineController::class, 'store'])->name('Domaine.store');
+Route::post('/DataMgt/profilimposition', [\App\Http\Controllers\Niv1\ProfilImpositionController::class, 'store'])->name('ProfilImposition.store');
+Route::post('/DataMgt/relimposition', [\App\Http\Controllers\Niv1\RelImpositionController::class, 'store'])->name('RelImposition.store');
+Route::post('/DataMgt/entreprise', [\App\Http\Controllers\Niv1\EntrepriseController::class, 'store'])->name('Entreprise.store');
+Route::post('/DataMgt/fichedepaye', [\App\Http\Controllers\Niv1\FicheDePayeController::class, 'store'])->name('FicheDePaye.store');
+Route::post('/DataMgt/inflation', [\App\Http\Controllers\Niv1\InflationController::class, 'store'])->name('Inflation.store');
 
-Route::post('/DataMgt/comptebancaire', [\App\Http\Controllers\CompteBancaireController::class, 'store'])->name('CompteBancaire.store');
+//Brezze Authentification à greffer
+Route::get('/', function () {
+    return view('welcome');
+});
 
-// Route::resource('/DataMgt/CompteBancaire', \App\Http\Controllers\Sfg\CompteBancaire::class);
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
 
-// Route::get('/Gdata', [\App\Http\Controllers\AdminData::class, 'test'])->name('ref');
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
-
-// Route::get('/dashboard', function () {
-//     return view('dashboard');
-// })->middleware(['auth', 'verified'])->name('dashboard');
-
-// Route::middleware('auth')->group(function () {
-//     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-//     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-//     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-// });
-
-// require __DIR__.'/auth.php';
+require __DIR__.'/auth.php';
