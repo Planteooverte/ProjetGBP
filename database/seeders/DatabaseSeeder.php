@@ -14,7 +14,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        \App\Models\OperationBancaire::factory(5)->create();
+        // \App\Models\OperationBancaire::factory(5)->create();
         // \App\Models\RelImposition::factory(5)->create();
         // \App\Models\FicheDePaye::factory(5)->create();
           

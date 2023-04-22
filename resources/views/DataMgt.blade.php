@@ -83,9 +83,11 @@
                                 <input class="form-control" name="NbrDePart" type="text" placeholder="Nombre de part">
                                 <select class="rounded" name="idDomaine" size=1 style="width:100%">
                                     <option value="description">--Veuillez choisir un domaine de service--</option>
-                                    @foreach ($Domaines as $Domaine)
-                                        <option value="{{  $Domaine->id }}">{{ $Domaine->NomDomaine }}</option>
-                                    @endforeach     
+                                    <option value="Eau">Eau</option>
+                                    <option value="Electricite">Electricité</option>
+                                    <option value="Telecom">Telecommunication(Internet, Telephone, Vod)</option>
+                                    <option value="Eau">Telecommunication</option>
+                                    <option value="Eau">Autres domaines...</option>      
                                 </select>
                                 <br>
                                 <input class="form-control" name="idCentimpot" type="hidden"  value="1"> <!--WARNING: Branchement authentification - id User qui renvoie idCentimpot -->    
@@ -115,7 +117,7 @@
                                 <input class="form-control" name="SalaireBrut" type="text" placeholder="Salaire brut">
                                 <input class="form-control" name="SalaireNet" type="text" placeholder="Salaire net">
                                 <input class="form-control" name="ChargeEmployeur" type="text" placeholder="Charge employeur">
-                                <input class="form-control" name="idDomaine" type="hidden"  value="{{  $Domaine->id }}">
+                                <input class="form-control" name="idDomaine" type="hidden"  value="1">
                                 <input class="form-control" name="idEnt" type="hidden"  value="1"> <!--WARNING: Branchement authentification - id User -->
                                 <input id="CentImpC" type="submit" value="Créer" class="btn btn-dark">
                             </div>
@@ -146,20 +148,15 @@
                             @csrf
                             <select class="rounded" name="idDomaine" size=1 style="width:100%">
                                     <option value="description">--Veuillez choisir un compte à modifier--</option>
-                                @foreach ($CompteBancaires as $CompteBancaire)
-                                    <option value="{{  $CompteBancaire->id }}">{{ $CompteBancaire->RefCompte }}</option>
-                                @endforeach     
                             </select>
                             <div>
-                                <input class="form-control" name="RefCompte" type="text" placeholder="{{ $CompteBancaire->RefCompte }}">
-                                <input class="form-control" name="NomBanque" type="text" placeholder="{{ $CompteBancaire->NomBanque }}">
-                                <input class="form-control" name="Adresse" type="text" placeholder="{{ $CompteBancaire->Adresse }}">
+                                <input class="form-control" name="RefCompte" type="text" placeholder="xxx">
+                                <input class="form-control" name="NomBanque" type="text" placeholder="xxx">
+                                <input class="form-control" name="Adresse" type="text" placeholder="xxx">
                                 <input class="form-control" name="idUser" type="hidden"  value="1"> <!--WARNING: Branchement authentification - id User -->
                                 <input id="CptbanC" type="submit" value="Modifier" class="btn btn-dark">
                             </div>
-                            @error('compteBancaire')
-                                    <p class="help is-danger">{{ $message }}</p>
-                            @enderror
+
                         </form>
                     <h3>Domaine</h3>
                         <form method='POST' action="{{ route('Domaine.store') }}">
@@ -215,9 +212,11 @@
                                 <input class="form-control" name="NbrDePart" type="text" placeholder="Nombre de part">
                                 <select class="rounded" name="idDomaine" size=1 style="width:100%">
                                     <option value="description">--Veuillez choisir un domaine de service--</option>
-                                    @foreach ($Domaines as $Domaine)
-                                        <option value="{{  $Domaine->id }}">{{ $Domaine->NomDomaine }}</option>
-                                    @endforeach     
+                                        <option value="Eau">Eau</option>
+                                        <option value="Electricite">Electricité</option>
+                                        <option value="Telecom">Telecommunication(Internet, Telephone, VOD)</option>
+                                        <option value="Eau">Telecommunication</option>
+                                        <option value="Eau">Autres domaines...</option>   
                                 </select>
                                 <br>
                                 <input class="form-control" name="idCentimpot" type="hidden"  value="1"> <!--WARNING: Branchement authentification - id User qui renvoie idCentimpot -->    
@@ -247,7 +246,7 @@
                                 <input class="form-control" name="SalaireBrut" type="text" placeholder="Salaire brut">
                                 <input class="form-control" name="SalaireNet" type="text" placeholder="Salaire net">
                                 <input class="form-control" name="ChargeEmployeur" type="text" placeholder="Charge employeur">
-                                <input class="form-control" name="idDomaine" type="hidden"  value="{{  $Domaine->id }}">
+                                <input class="form-control" name="idDomaine" type="hidden"  value="1">
                                 <input class="form-control" name="idEnt" type="hidden"  value="1"> <!--WARNING: Branchement authentification - id User -->
                                 <input id="CentImpC" type="submit" value="Modifier" class="btn btn-dark">
                             </div>
@@ -342,9 +341,11 @@
                                 <input class="form-control" name="NbrDePart" type="text" placeholder="Nombre de part">
                                 <select class="rounded" name="idDomaine" size=1 style="width:100%">
                                     <option value="description">--Veuillez choisir un domaine de service--</option>
-                                    @foreach ($Domaines as $Domaine)
-                                        <option value="{{  $Domaine->id }}">{{ $Domaine->NomDomaine }}</option>
-                                    @endforeach     
+                                        <option value="Eau">Eau</option>
+                                        <option value="Electricite">Electricité</option>
+                                        <option value="Telecom">Telecommunication(Internet, Telephone, Vod)</option>
+                                        <option value="Eau">Telecommunication</option>
+                                        <option value="Eau">Autres domaines...</option>
                                 </select>
                                 <br>
                                 <input class="form-control" name="idCentimpot" type="hidden"  value="1"> <!--WARNING: Branchement authentification - id User qui renvoie idCentimpot -->    
@@ -374,7 +375,7 @@
                                 <input class="form-control" name="SalaireBrut" type="text" placeholder="Salaire brut">
                                 <input class="form-control" name="SalaireNet" type="text" placeholder="Salaire net">
                                 <input class="form-control" name="ChargeEmployeur" type="text" placeholder="Charge employeur">
-                                <input class="form-control" name="idDomaine" type="hidden"  value="{{  $Domaine->id }}">
+                                <input class="form-control" name="idDomaine" type="hidden"  value="">
                                 <input class="form-control" name="idEnt" type="hidden"  value="1"> <!--WARNING: Branchement authentification - id User -->
                                 <input id="CentImpC" type="submit" value="Supprimer" class="btn btn-dark">
                             </div>

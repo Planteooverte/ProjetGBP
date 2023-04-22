@@ -20,7 +20,7 @@ class Domaine extends Model
         'QuantiteConsommee',
         'Unite',
         'Annee',
-        'idUser',
+        'user_id',
     ];
 
     //suppression de "create_at" et "update_at"

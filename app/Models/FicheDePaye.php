@@ -20,8 +20,8 @@ class FicheDePaye extends Model
         'SalaireBrut',
         'SalaireNet',
         'ChargeEmployeur',
-        'idDomaine',
-        'idEnt',
+        'domaine_id',
+        'entreprise_id',
     ];
 
     //suppression de "create_at" et "update_at"

@@ -20,8 +20,9 @@ class OperationBancaire extends Model
         'DescriptionOperation',
         'Credit',
         'Debit',
-        'idCompte',
-        'idDomaine',
+        'compte_bancaire_id',
+        'domaine_id',
+        'fichier_csv_id',
     ];
 
     //suppression de "create_at" et "update_at"

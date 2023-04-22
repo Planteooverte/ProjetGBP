@@ -19,7 +19,7 @@ class CompteBancaire extends Model
         'RefCompte',
         'NomBanque',
         'Adresse',
-        'idUser',
+        'user_id',
     ];
 
     //suppression de "create_at" et "update_at"

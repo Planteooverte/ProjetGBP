@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class FichierCsv extends Model
+class User_Entreprise extends Model
 {
     use HasFactory;
 
@@ -16,15 +16,11 @@ class FichierCsv extends Model
      */
     protected $fillable = [
         'id',
-        'NomFichier',
-        'CheminFichier',
-        'Created_at',
-        'Updated_at',
-        'Deleted_at',
+        'created_at',
+        'updated_at',
+        'deleted_at',
+        'user_id',
+        'entreprise_id',
     ];
 
-    public function OperationBancaires()
-    { 
-        return $this->hasMany(OperationBancaire::class); 
-    }
 }

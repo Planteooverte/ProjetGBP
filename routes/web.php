@@ -16,6 +16,11 @@ use Illuminate\Support\Facades\Route;
 
 // Route::get('/', [\App\Http\Controllers\HomeController::class, 'index']);
 
+//Accueil
+Route::get('/', function () {
+    return view('welcome2');
+});
+
 //Route Page Principale
 Route::get('/Gdonnees', [\App\Http\Controllers\AdminData::class, 'index']);
 Route::get('/DataMgt', [\App\Http\Controllers\AdminData::class, 'indexlist'])->name('GestionDonnee');
@@ -29,15 +34,18 @@ Route::post('/DataMgt/entreprise', [\App\Http\Controllers\Niv1\EntrepriseControl
 Route::post('/DataMgt/fichedepaye', [\App\Http\Controllers\Niv1\FicheDePayeController::class, 'store'])->name('FicheDePaye.store');
 Route::post('/DataMgt/inflation', [\App\Http\Controllers\Niv1\InflationController::class, 'store'])->name('Inflation.store');
 
-//Brezze Authentification à greffer
-Route::get('/', function () {
-    return view('welcome');
-});
-
+//Brezze Page Dashboard
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
+//Page de Gestion des Données
+Route::get('/dataManagement', function () { return view('dataManagement'); })->name('dataManagement');
+
+//Page de Consultation des relevés (bancaire, imposition, salaires, inflation)
+Route::get('/report', function () { return view('report'); })->name('report');
+
+//Brezze Authentification
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
