@@ -1,45 +1,65 @@
-<div class="text-bg-success p-3 m-2 rounded">
+<section>
+    <header>
+        <h2 class="text-lg font-medium text-gray-900">
+            {{ __('Référence d\'imposition') }}
+        </h2>
 
-    <h3>Référence d'imposition</h3>
+        <p class="mt-1 text-sm text-gray-600">
+            {{ __("Ajouter un numero fiscal") }}
+        </p>
+    </header>
     <form method='POST' action="{{ route('ProfilImposition.store') }}">
         @csrf
-        <Label>Ajouter un numero fiscal</Label>
         <div>
-            <input class="form-control" name="NumeroFiscal" type="text" placeholder="Numéro fiscal">
-            <input class="form-control" name="idUser" type="hidden"  value="1"> <!--WARNING: Branchement authentification - id User -->
-            <input id="CentImpC" type="submit" value="Créer" class="btn btn-dark">
+            <x-text-input id="NumeroFiscal" name="NumeroFiscal" type="number" class="mt-1 block w-full" placeholder="Numéro fiscal"/>
+            <x-text-input id="user_id" name="user_id" type="hidden" class="mt-1 block w-full" value="{{ Auth::user()->id }}"/>
         </div>
+        <div class="flex items-center gap-4">
+            <x-primary-button class="mt-1 block">{{ __('Créer') }}</x-primary-button>
+        </div>
+        <!-- Message de réussite -->
+        @if (session()->has('message'))
+            <div class="mt-3 mb-4 list-disc list-inside text-sm text-green-600 font-semibold">
+                {{ session('message') }}
+            </div>
+        @endif
     </form>
 
-    <h3>Relevé d'imposition</h3>
+    <header>
+        <h2 class="mt-3 text-lg font-medium text-gray-900">
+            {{ __('Relevé d\'imposition') }}
+        </h2>
+
+        <p class="mt-1 text-sm text-gray-600">
+            {{ __("Ajouter un relevé d'imposition") }}
+        </p>
+    </header>
     <form method='POST' action="{{ route('RelImposition.store') }}">
         @csrf
-        <Label>Ajouter un relevé d'imposition<br></Label>
         <div>
-            <select class="rounded" name="TypeImposition" size=1 style="width:100%">
+            <select class="mt-1 block w-full" name="TypeImposition">
                 <option value="description">--Veuillez choisir un impôt--</option>
-                <option value="Revenue">Impôt sur le revenue</option>
-                <option value="Foncier">Impôt foncier</option>
+                <option value="Revenue">Revenue</option>
+                <option value="Foncier">Foncier</option>
                 <option value="Habitation">Taxe d'habitation</option>
             </select>
-            <input class="form-control" name="AnneeFiscal" type="text" placeholder="Annee fiscal">
-            <input class="form-control" name="Montant" type="text" placeholder="Montant">
-            <input class="form-control" name="DateEtablissement" type="text" placeholder="Date d'établissement">
-            <input class="form-control" name="TauxImposition" type="text" placeholder="Taux d'imposition">
-            <input class="form-control" name="RevenuFiscalDeReference" type="text" placeholder="Revenue fiscal de référence">
-            <input class="form-control" name="NbrDePart" type="text" placeholder="Nombre de part">
-            <select class="rounded" name="idDomaine" size=1 style="width:100%">
-                <option value="description">--Veuillez choisir un domaine de service--</option>
-                <option value="Eau">Eau</option>
-                <option value="Electricite">Electricité</option>
-                <option value="Telecom">Telecommunication(Internet, Telephone, Vod)</option>
-                <option value="Eau">Telecommunication</option>
-                <option value="Eau">Autres domaines...</option>      
-            </select>
-            <br>
-            <input class="form-control" name="idCentimpot" type="hidden"  value="1"> <!--WARNING: Branchement authentification - id User qui renvoie idCentimpot -->    
-            <input id="RelImpC" type="submit" value="Créer" class="btn btn-dark">
+            <x-text-input id="AnneeFiscal" name="AnneeFiscal" type="date" class="mt-1 block w-full" autocomplete="AnneeFiscal" placeholder="Année fiscal"/>
+            <x-text-input id="Montant" name="Montant" type="decimal" class="mt-1 block w-full" autocomplete="Montant" placeholder="Montant"/>
+            <x-text-input id="DateEtablissement" name="DateEtablissement" type="date" class="mt-1 block w-full" autocomplete="DateEtablissement" placeholder="Date d'établissement"/>
+            <x-text-input id="TauxImposition" name="TauxImposition" type="decimal" class="mt-1 block w-full" autocomplete="TauxImposition" placeholder="Taux d'imposition"/>
+            <x-text-input id="RevenuFiscalDeReference" name="RevenuFiscalDeReference" type="decimal" class="mt-1 block w-full" autocomplete="RevenuFiscalDeReference" placeholder="Revenue fiscal de référence"/>
+            <x-text-input id="NbrDePart" name="NbrDePart" type="number" class="mt-1 block w-full" autocomplete="NbrDePart" placeholder="Nombre de part"/>
+            <x-text-input id="domaine_id" name="domaine_id" type="hidden" class="mt-1 block w-full" value="Impôt"/>
+            <x-text-input id="profil_imposition_id" name="profil_imposition_id" type="hidden" class="mt-1 block w-full" value="1"/>
         </div>
-    </form>
-    
-</div>
+        <div class="flex items-center gap-4">
+            <x-primary-button class="mt-1 block">{{ __('Créer') }}</x-primary-button>
+        </div>
+        <!-- Message de réussite -->
+        @if (session()->has('message'))
+            <div class="mt-3 mb-4 list-disc list-inside text-sm text-green-600 font-semibold">
+                {{ session('message') }}
+            </div>
+        @endif
+    </form> 
+</section>

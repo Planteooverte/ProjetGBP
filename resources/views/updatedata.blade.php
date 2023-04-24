@@ -9,27 +9,22 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
             <div class="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
                 <div class="max-w-xl">
-                    @include('module1.create-bank-information-form')
+                    <div class="">Mise à jour</div>
                 </div>
             </div>
 
             <div class="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
-                <div class="max-w-xl">
-                    @include('module2.create-tax-information-form')
+                <div class="">
+                    @include('datamgt.module1.index-bank-information-form')
                 </div>
             </div>
 
             <div class="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
-                <div class="max-w-xl">
-                    @include('module3.create-job-information-form')
+                <div class="">
+                    @include('datamgt.module1.update-bank-information-form')
                 </div>
             </div>
 
-            <div class="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
-                <div class="max-w-xl">
-                    @include('module4.create-inflation-information-form')
-                </div>
-            </div>
         </div>
     </div>
 </x-app-layout>

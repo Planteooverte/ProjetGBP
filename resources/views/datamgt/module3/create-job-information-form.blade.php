@@ -1,31 +1,60 @@
-<div class="text-bg-success p-3 m-2 rounded">
+<section>
+    <header>
+        <h2 class="text-lg font-medium text-gray-900">
+            {{ __('Entreprise') }}
+        </h2>
 
-    <h3>Entreprise</h3>
+        <p class="mt-1 text-sm text-gray-600">
+            {{ __("Ajouter un employeur") }}
+        </p>
+    </header>
     <form method='POST' action="{{ route('Entreprise.store') }}">
         @csrf
-        <Label>Ajouter un employeur</Label>
         <div>
-            <input class="form-control" name="NomEntreprise" type="text" placeholder="Nom de l'entreprise">
-            <input class="form-control" name="Adresse" type="text" placeholder="Adresse">
-            <input class="form-control" name="created_at" type="text" placeholder="Date d'entrée">
-            <input class="form-control" name="idUser" type="hidden"  value="1"> <!--WARNING: Branchement authentification - id User -->
-            <input id="CentImpC" type="submit" value="Créer" class="btn btn-dark">
+            <x-text-input id="NomEntreprise" name="NomEntreprise" type="text" class="mt-1 block w-full" placeholder="Nom de l'entreprise"/>
+            <x-text-input id="Adresse" name="Adresse" type="text" class="mt-1 block w-full" placeholder="Adresse"/>
+            <x-text-input id="Date d'entrée" name="Date d'entrée" type="text" class="mt-1 block w-full" placeholder="Date d'entrée"/>
+            <x-text-input id="user_id" name="user_id" type="hidden" class="mt-1 block w-full" value="{{ Auth::user()->id }}"/>
         </div>
+        <div class="flex items-center gap-4">
+            <x-primary-button class="mt-1 block">{{ __('Créer') }}</x-primary-button>
+        </div>
+        <!-- Message de réussite -->
+        @if (session()->has('message'))
+            <div class="mt-3 mb-4 list-disc list-inside text-sm text-green-600 font-semibold">
+                {{ session('message') }}
+            </div>
+        @endif
     </form>
 
-    <h3>Fiche de paye</h3>
+    <header>
+        <h2 class="mt-3 text-lg font-medium text-gray-900">
+            {{ __('Fiche de paye') }}
+        </h2>
+
+        <p class="mt-1 text-sm text-gray-600">
+            {{ __("Ajouter les données d'une fiche de paye") }}
+        </p>
+    </header>
+
+
     <form method='POST' action="{{ route('FicheDePaye.store') }}">
         @csrf
-        <Label>Ajouter les données d'une fiche de paye</Label>
         <div>
-            <input class="form-control" name="Periode" type="text" placeholder="Période - format année/mois/jour">
-            <input class="form-control" name="SalaireBrut" type="text" placeholder="Salaire brut">
-            <input class="form-control" name="SalaireNet" type="text" placeholder="Salaire net">
-            <input class="form-control" name="ChargeEmployeur" type="text" placeholder="Charge employeur">
-            <input class="form-control" name="idDomaine" type="hidden"  value="1">
-            <input class="form-control" name="idEnt" type="hidden"  value="1"> <!--WARNING: Branchement authentification - id User -->
-            <input id="CentImpC" type="submit" value="Créer" class="btn btn-dark">
+            <x-text-input id="Periode" name="Periode" type="date" class="mt-1 block w-full" placeholder="Période"/>
+            <x-text-input id="SalaireBrut" name="SalaireBrut" type="decimal" class="mt-1 block w-full" placeholder="Salaire brut"/>
+            <x-text-input id="SalaireNet" name="SalaireNet" type="decimal" class="mt-1 block w-full" placeholder="Salaire net"/>
+            <x-text-input id="ChargeEmployeur" name="ChargeEmployeur" type="text" class="mt-1 block w-full" placeholder="Charge employeur"/>
+            <x-text-input id="domaine_id" name="domaine_id" type="hidden" class="mt-1 block w-full" value=""/>
+            <x-text-input id="entreprise_id" name="entreprise_id" type="hidden" class="mt-1 block w-full" value=""/>
         </div>
+        <div class="flex items-center gap-4">
+            <x-primary-button class="mt-1 block">{{ __('Créer') }}</x-primary-button>
+        </div>
+        <!-- Message de réussite -->
+        @if (session()->has('message'))
+            <div class="mt-3 mb-4 list-disc list-inside text-sm text-green-600 font-semibold">
+                {{ session('message') }}
+            </div>
+        @endif
     </form>
-    
-</div>

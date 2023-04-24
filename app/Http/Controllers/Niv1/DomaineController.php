@@ -37,7 +37,7 @@ class DomaineController extends Controller
     public function store(Request $Request)
     {
         Domaine::create($Request->all());
-        return redirect()->route('GestionDonnee')->with('info', 'le domaine de service a été créé');
+        return back()->with('message', 'le domaine de service a été créé');
     }
 
     /**

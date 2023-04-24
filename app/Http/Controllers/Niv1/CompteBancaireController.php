@@ -15,9 +15,9 @@ class CompteBancaireController extends Controller
      */
     public function index()
     {
-        //
+        //Assurer par SuperEditorController
     }
-
+    
     /**
      * Show the form for creating a new resource.
      *
@@ -25,7 +25,7 @@ class CompteBancaireController extends Controller
      */
     public function create()
     {
-        //
+        //Affichage du formulaire de création
     }
 
     /**
@@ -36,9 +36,9 @@ class CompteBancaireController extends Controller
      */
     public function store(Request $Request)
     {
+        //Enregistrement du formulaire de création
         CompteBancaire::create($Request->all());
-        return redirect()->route('GestionDonnee')->with('info', 'le compte a été créé');
-        // return "Dans le controleur!";
+        return back()->with('message', 'le compte a été créé');         // return "Dans le controleur!";
     }
 
     /**
@@ -49,7 +49,7 @@ class CompteBancaireController extends Controller
      */
     public function show($id)
     {
-        //
+        //Affichage de la fiche d'un compte bancaire
     }
 
     /**
@@ -58,9 +58,10 @@ class CompteBancaireController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(CompteBancaire $comptebancaire)
     {
-        //
+        //Affichage de la fiche d'un compte bancaire avec intention du màj
+        return view('edit', compact('comptebancaire'));
     }
 
     /**
@@ -70,9 +71,11 @@ class CompteBancaireController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, CompteBancaire $comptebancaire)
     {
-        //
+        //Mise à jour d'un compte bancaire
+        $comptebancaire->update($request->all());
+        return back()->with('message', 'le compte a été mis à jour'); 
     }
 
     /**
@@ -83,6 +86,13 @@ class CompteBancaireController extends Controller
      */
     public function destroy($id)
     {
-        //
+        //Destruction d'un compte bancaire
     }
+
+    
+ 
+
 }
+
+
+

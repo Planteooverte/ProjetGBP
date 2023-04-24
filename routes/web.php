@@ -40,7 +40,12 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 //Page de Gestion des Données
-Route::get('/dataManagement', function () { return view('dataManagement'); })->name('dataManagement');
+Route::get('/dataManagement/new', [App\Http\Controllers\Niv2\SuperEditorController::class, 'editor'])->name('createdata.editor');
+Route::get('/dataManagement/list', [App\Http\Controllers\Niv2\SuperEditorController::class, 'indexor'])->name('updatedata.indexor');
+
+//CRUD table comptebancaire
+Route::post('/dataManagement/comptebancaire/new', [\App\Http\Controllers\Niv1\CompteBancaireController::class, 'edit'])->name('CompteBancaire.edit');
+Route::post('/dataManagement/comptebancaire/new', [\App\Http\Controllers\Niv1\CompteBancaireController::class, 'update'])->name('CompteBancaire.update');
 
 //Page de Consultation des relevés (bancaire, imposition, salaires, inflation)
 Route::get('/report', function () { return view('report'); })->name('report');
