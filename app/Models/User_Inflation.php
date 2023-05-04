@@ -18,7 +18,7 @@ class User_Inflation extends Model
         'id',
         'Annee',
         'user_id',
-        'entreprise_id',
+        'inflation_id',
     ];
 
     //suppression de "create_at" et "update_at"

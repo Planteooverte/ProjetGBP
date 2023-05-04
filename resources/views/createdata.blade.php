@@ -27,13 +27,13 @@
 
             <div class="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
                 <div class="">
-                    @include('datamgt.module3.create-job-information-form')
+
                 </div>
             </div>
 
             <div class="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
                 <div class="">
-                    @include('datamgt.module4.create-inflation-information-form')
+
                 </div>
             </div>
         </div>

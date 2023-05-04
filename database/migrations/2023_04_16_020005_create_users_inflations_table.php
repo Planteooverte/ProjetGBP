@@ -21,7 +21,7 @@ return new class extends Migration
                     ->onUpdate('cascade')
                     ->onDelete('cascade');
             // $table->foreign('idUser')->references('id')->on('users');
-            $table->foreignId('entreprise_id')
+            $table->foreignId('inflation_id')
                     ->constrained()
                     ->onUpdate('cascade')
                     ->onDelete('cascade');

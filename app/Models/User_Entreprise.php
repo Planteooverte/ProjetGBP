@@ -22,5 +22,4 @@ class User_Entreprise extends Model
         'user_id',
         'entreprise_id',
     ];
-
 }

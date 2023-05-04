@@ -26,7 +26,6 @@ Route::get('/Gdonnees', [\App\Http\Controllers\AdminData::class, 'index']);
 Route::get('/DataMgt', [\App\Http\Controllers\AdminData::class, 'indexlist'])->name('GestionDonnee');
 
 //Route Formulaire Create - Page DataMgt
-Route::post('/DataMgt/comptebancaire', [\App\Http\Controllers\Niv1\CompteBancaireController::class, 'store'])->name('CompteBancaire.store');
 Route::post('/DataMgt/domaine', [\App\Http\Controllers\Niv1\DomaineController::class, 'store'])->name('Domaine.store');
 Route::post('/DataMgt/profilimposition', [\App\Http\Controllers\Niv1\ProfilImpositionController::class, 'store'])->name('ProfilImposition.store');
 Route::post('/DataMgt/relimposition', [\App\Http\Controllers\Niv1\RelImpositionController::class, 'store'])->name('RelImposition.store');
@@ -40,12 +39,16 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 //Page de Gestion des Données
-Route::get('/dataManagement/new', [App\Http\Controllers\Niv2\SuperEditorController::class, 'editor'])->name('createdata.editor');
-Route::get('/dataManagement/list', [App\Http\Controllers\Niv2\SuperEditorController::class, 'indexor'])->name('updatedata.indexor');
+// Route::get('/dataManagement/new', [App\Http\Controllers\Niv2\SuperEditorController::class, 'editor'])->name('createdata.editor');
+Route::get('/dataManagement/list', [App\Http\Controllers\Niv2\SuperEditorController::class, 'indexor'])->name('listgeneral.indexor');
 
 //CRUD table comptebancaire
-Route::post('/dataManagement/comptebancaire/new', [\App\Http\Controllers\Niv1\CompteBancaireController::class, 'edit'])->name('CompteBancaire.edit');
-Route::post('/dataManagement/comptebancaire/new', [\App\Http\Controllers\Niv1\CompteBancaireController::class, 'update'])->name('CompteBancaire.update');
+Route::get('/dataManagement/comptebancaire/new', [\App\Http\Controllers\Niv1\CompteBancaireController::class, 'create'])->name('CompteBancaires.create');
+Route::post('/dataManagement/comptebancaire/ajout', [\App\Http\Controllers\Niv1\CompteBancaireController::class, 'store'])->name('CompteBancaire.store');
+Route::get('/dataManagement/comptebancaire/detail/{id}', [\App\Http\Controllers\Niv1\CompteBancaireController::class, 'edit'])->name('CompteBancaires.edit');
+Route::post('/dataManagement/comptebancaire/màj/{id}', [\App\Http\Controllers\Niv1\CompteBancaireController::class, 'update'])->name('CompteBancaires.update');
+Route::get('/dataManagement/comptebancaire/Suppr/{id}', [\App\Http\Controllers\Niv1\CompteBancaireController::class, 'destroy'])->name('CompteBancaires.destroy');
+
 
 //Page de Consultation des relevés (bancaire, imposition, salaires, inflation)
 Route::get('/report', function () { return view('report'); })->name('report');

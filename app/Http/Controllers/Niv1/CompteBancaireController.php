@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers\Niv1;
 
-use App\Models\CompteBancaire;
 use Illuminate\Http\Request;
+use App\Models\CompteBancaire;
+use App\Http\Requests\CompteBancaire as CompteBancaireRequest;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+
 
 class CompteBancaireController extends Controller
 {
@@ -25,7 +28,11 @@ class CompteBancaireController extends Controller
      */
     public function create()
     {
-        //Affichage du formulaire de création
+        $user = Auth::user()->id;
+        return view('datamgt.module1.comptebancaire.create', [
+            'CompteBancaires' => CompteBancaire::all()->where('user_id',$user),
+            //à enrichier avec le reste des objets pour traitement CREATE
+        ]);
     }
 
     /**
@@ -38,7 +45,7 @@ class CompteBancaireController extends Controller
     {
         //Enregistrement du formulaire de création
         CompteBancaire::create($Request->all());
-        return back()->with('message', 'le compte a été créé');         // return "Dans le controleur!";
+        return redirect()->route('listgeneral.indexor')->with('message', 'le compte a été créé');
     }
 
     /**
@@ -47,10 +54,6 @@ class CompteBancaireController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
-        //Affichage de la fiche d'un compte bancaire
-    }
 
     /**
      * Show the form for editing the specified resource.
@@ -58,12 +61,12 @@ class CompteBancaireController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(CompteBancaire $comptebancaire)
+    public function edit(Request $request, CompteBancaire $CompteBancaire, $id)
     {
-        //Affichage de la fiche d'un compte bancaire avec intention du màj
-        return view('edit', compact('comptebancaire'));
+        $CompteBancaire = CompteBancaire::findOrFail($id);
+        return view('datamgt.module1.comptebancaire.edit', compact('CompteBancaire'));
     }
-
+        
     /**
      * Update the specified resource in storage.
      *
@@ -71,11 +74,11 @@ class CompteBancaireController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, CompteBancaire $comptebancaire)
+    public function update(Request $request, CompteBancaire $CompteBancaire, $id)
     {
-        //Mise à jour d'un compte bancaire
-        $comptebancaire->update($request->all());
-        return back()->with('message', 'le compte a été mis à jour'); 
+        $CompteBancaire = CompteBancaire::findOrFail($id);
+        $CompteBancaire->update($request->all()); 
+        return redirect()->route('listgeneral.indexor')->with('message', 'le compte a été mis à jour'); 
     }
 
     /**
@@ -86,12 +89,9 @@ class CompteBancaireController extends Controller
      */
     public function destroy($id)
     {
-        //Destruction d'un compte bancaire
+        CompteBancaire::where('id',$id)->delete();
+        return redirect()->route('listgeneral.indexor')->with('message', 'le compte a été supprimé');
     }
-
-    
- 
-
 }
 
 

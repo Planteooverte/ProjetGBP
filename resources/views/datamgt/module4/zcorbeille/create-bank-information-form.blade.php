@@ -20,7 +20,8 @@
                 <p class="help is-danger">{{ $message }}</p>
         @enderror
         <div class="flex items-center gap-4">
-            <x-primary-button class="mt-1 block">{{ __('Créer') }}</x-primary-button>
+            <x-green-button class="mt-1 block">{{ __('Créer') }}</x-green-button>
+            <x-orange-button class="mt-1 block">{{ __('Créer') }}</x-orange-button>
         </div>
         <!-- Message de réussite -->
         @if (session()->has('message'))
@@ -84,7 +85,5 @@
                 {{ session('message') }}
             </div>
         @endif
-    </form>
-
-   
+    </form>  
 </section>
