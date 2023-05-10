@@ -8,6 +8,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Database\Eloquent\Model; //Utilisation belongsTo/belongsToMany ...
 
 class User extends Authenticatable implements MustVerifyEmail
 {
@@ -44,6 +45,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'email_verified_at' => 'datetime',
     ];
 
+    //Retour les plusieurs comptebancaire d'un utilisateur
     public function CompteBancaires()
     {
         return $this->hasMany(CompteBancaire::class);
@@ -53,7 +55,7 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->hasMany(Domaine::class);
     }
-    
+
     public function ProfilImpositions()
     {
         return $this->hasMany(ProfilImposition::class);
@@ -61,7 +63,8 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function Entreprises()
     {
-        return $this->belongsToMany(Entreprise::class);
+        return $this->belongsToMany(Entreprise::class)
+                                ->withPivot('dateEntree', 'dateSortie');;
     }
 
     public function Inflations()

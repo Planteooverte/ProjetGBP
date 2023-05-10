@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\Niv1;
 
 use App\Models\Entreprise;
-use App\Models\Employer;
+use App\Models\User_Entreprise;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Database\Eloquent\Model;
 
 class EntrepriseController extends Controller
 {
@@ -16,7 +18,7 @@ class EntrepriseController extends Controller
      */
     public function index()
     {
-        //
+        //Assurer par SuperEditorController
     }
 
     /**
@@ -26,7 +28,8 @@ class EntrepriseController extends Controller
      */
     public function create()
     {
-        //
+        $userid = Auth::user()->id;
+        return view('datamgt.module3.entreprise.create',compact('userid'));
     }
 
     /**
@@ -37,9 +40,17 @@ class EntrepriseController extends Controller
      */
     public function store(Request $Request)
     {
-        Entreprise::create($Request->all());
-        // Employer::create($Request->all());
-        return redirect()->route('GestionDonnee')->with('info', 'l\'entreprise a été créé');
+        // $entreprise = Entreprise::create($Request->all());
+        // $entreprise->Users()->attach(6);
+        // $entreprise = new Entreprise;
+        // $entreprise->NomEntreprise = $Request['NomEntreprise'];
+        // $entreprise->Adresse = $Request['Adresse'];
+        // $entreprise->save();
+
+        //Enregistrement du formulaire de création
+        $entreprise = Entreprise::create($Request->all());
+        $entreprise->Users()->attach($Request['user_id']);
+        return redirect()->route('listgeneral.indexor')->with('message_entreprise', 'l\'entreprise a été créée');
     }
 
     /**
@@ -50,7 +61,7 @@ class EntrepriseController extends Controller
      */
     public function show($id)
     {
-        //
+        //Non utilisé
     }
 
     /**
@@ -59,9 +70,10 @@ class EntrepriseController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Request $request, Entreprise $Entreprise, $id)
     {
-        //
+        $Entreprise = Entreprise::findOrFail($id);
+        return view('datamgt.module3.entreprise.edit', compact('Entreprise'));
     }
 
     /**
@@ -73,7 +85,8 @@ class EntrepriseController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $Entreprise = Entreprise::findOrFail($id)->update($request->all());
+        return redirect()->route('listgeneral.indexor')->with('message_entreprise', 'l\'entreprise a été mise à jour');
     }
 
     /**
@@ -84,6 +97,7 @@ class EntrepriseController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Entreprise::where('id',$id)->delete();
+        return redirect()->route('listgeneral.indexor')->with('message_entreprise', 'l\'entreprise a été supprimée');
     }
 }

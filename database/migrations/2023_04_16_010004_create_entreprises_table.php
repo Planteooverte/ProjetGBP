@@ -17,6 +17,8 @@ return new class extends Migration
             $table->id();
             $table->string('NomEntreprise');
             $table->string('Adresse');
+            $table->date('dateEntree');
+            $table->date('dateSortie');
                     });
     }
 

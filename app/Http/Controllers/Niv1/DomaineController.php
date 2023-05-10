@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Niv1;
 use App\Models\Domaine;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class DomaineController extends Controller
 {
@@ -15,7 +16,7 @@ class DomaineController extends Controller
      */
     public function index()
     {
-    
+        //Assurer par SuperEditorController
     }
 
     /**
@@ -25,7 +26,8 @@ class DomaineController extends Controller
      */
     public function create()
     {
-        //
+        $userid = Auth::user()->id;
+        return view('datamgt.module1.domaine.create', compact('userid'));
     }
 
     /**
@@ -37,7 +39,7 @@ class DomaineController extends Controller
     public function store(Request $Request)
     {
         Domaine::create($Request->all());
-        return back()->with('message', 'le domaine de service a été créé');
+        return redirect()->route('listgeneral.indexor')->with('message_domaine', 'le domaine a été créé');
     }
 
     /**
@@ -48,7 +50,7 @@ class DomaineController extends Controller
      */
     public function show($id)
     {
-        //
+        //Non utilisé
     }
 
     /**
@@ -57,9 +59,10 @@ class DomaineController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Request $request, Domaine $Domaine, $id)
     {
-        //
+        $Domaine = Domaine::findOrFail($id);
+        return view('datamgt.module1.domaine.edit', compact('Domaine'));
     }
 
     /**
@@ -69,9 +72,11 @@ class DomaineController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Domaine $Domaine, $id)
     {
-        //
+        $Domaine = Domaine::findOrFail($id);
+        $Domaine->update($request->all()); 
+        return redirect()->route('listgeneral.indexor')->with('message_domaine', 'le domaine a été mis à jour'); 
     }
 
     /**
@@ -82,6 +87,7 @@ class DomaineController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Domaine::where('id',$id)->delete();
+        return redirect()->route('listgeneral.indexor')->with('message_domaine', 'le domaine a été supprimé');
     }
 }

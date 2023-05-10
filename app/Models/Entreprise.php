@@ -3,7 +3,8 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Model; //Utilisation belongsTo/belongsToMany ...
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Entreprise extends Model
 {
@@ -18,19 +19,21 @@ class Entreprise extends Model
         'id',
         'NomEntreprise',
         'Adresse',
+        'dateEntree',
+        'dateSortie',
     ];
 
     //suppression de "create_at" et "update_at"
       public $timestamps = false;
 
     public function Users()
-    { 
-        return $this->belongsTo(User::class); 
+    {
+        return $this->belongsToMany(User::class);
     }
 
     public function FicheDePayes()
-    { 
-        return $this->hasMany(FicheDePaye::class); 
+    {
+        return $this->hasMany(FicheDePaye::class);
     }
 
 }

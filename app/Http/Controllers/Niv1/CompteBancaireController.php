@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Niv1;
 
-use Illuminate\Http\Request;
 use App\Models\CompteBancaire;
-use App\Http\Requests\CompteBancaire as CompteBancaireRequest;
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\CompteBancaire as CompteBancaireRequest;
 
 
 class CompteBancaireController extends Controller
@@ -28,11 +28,8 @@ class CompteBancaireController extends Controller
      */
     public function create()
     {
-        $user = Auth::user()->id;
-        return view('datamgt.module1.comptebancaire.create', [
-            'CompteBancaires' => CompteBancaire::all()->where('user_id',$user),
-            //à enrichier avec le reste des objets pour traitement CREATE
-        ]);
+        $userid = Auth::user()->id;
+        return view('datamgt.module1.comptebancaire.create',compact('userid'));
     }
 
     /**
@@ -45,7 +42,7 @@ class CompteBancaireController extends Controller
     {
         //Enregistrement du formulaire de création
         CompteBancaire::create($Request->all());
-        return redirect()->route('listgeneral.indexor')->with('message', 'le compte a été créé');
+        return redirect()->route('listgeneral.indexor')->with('message_comptebancaire', 'le compte a été créé');
     }
 
     /**
@@ -54,6 +51,10 @@ class CompteBancaireController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    public function show($id)
+    {
+        //Non utilisé
+    }
 
     /**
      * Show the form for editing the specified resource.
@@ -78,7 +79,7 @@ class CompteBancaireController extends Controller
     {
         $CompteBancaire = CompteBancaire::findOrFail($id);
         $CompteBancaire->update($request->all()); 
-        return redirect()->route('listgeneral.indexor')->with('message', 'le compte a été mis à jour'); 
+        return redirect()->route('listgeneral.indexor')->with('message_comptebancaire', 'le compte a été mis à jour'); 
     }
 
     /**
@@ -90,7 +91,7 @@ class CompteBancaireController extends Controller
     public function destroy($id)
     {
         CompteBancaire::where('id',$id)->delete();
-        return redirect()->route('listgeneral.indexor')->with('message', 'le compte a été supprimé');
+        return redirect()->route('listgeneral.indexor')->with('message_comptebancaire', 'le compte a été supprimé');
     }
 }
 

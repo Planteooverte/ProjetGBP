@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Niv1;
 use App\Models\ProfilImposition;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class ProfilImpositionController extends Controller
 {
@@ -15,7 +16,7 @@ class ProfilImpositionController extends Controller
      */
     public function index()
     {
-        //
+        //Assurer par SuperEditorController
     }
 
     /**
@@ -25,7 +26,8 @@ class ProfilImpositionController extends Controller
      */
     public function create()
     {
-        //
+        $userid = Auth::user()->id;
+        return view('datamgt.module2.profilimposition.create', compact('userid'));
     }
 
     /**
@@ -37,8 +39,7 @@ class ProfilImpositionController extends Controller
     public function store(Request $Request)
     {
         ProfilImposition::create($Request->all());
-        return redirect()->route('GestionDonnee')->with('info', 'le compte a été créé');
-        // return "Dans le controleur!";
+        return redirect()->route('listgeneral.indexor')->with('message_profilimposition', 'le profil a été créé');
     }
 
     /**
@@ -49,7 +50,7 @@ class ProfilImpositionController extends Controller
      */
     public function show($id)
     {
-        //
+        //Non utilisé
     }
 
     /**
@@ -58,9 +59,10 @@ class ProfilImpositionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Request $request, ProfilImposition $ProfilImposition, $id)
     {
-        //
+        $ProfilImposition = ProfilImposition::findOrFail($id);
+        return view('datamgt.module2.profilimposition.edit', compact('ProfilImposition'));
     }
 
     /**
@@ -70,9 +72,11 @@ class ProfilImpositionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, ProfilImposition $ProfilImposition, $id)
     {
-        //
+        $ProfilImposition = ProfilImposition::findOrFail($id);
+        $ProfilImposition->update($request->all()); 
+        return redirect()->route('listgeneral.indexor')->with('message_profilimposition', 'le profil a été mis à jour'); 
     }
 
     /**
@@ -83,6 +87,7 @@ class ProfilImpositionController extends Controller
      */
     public function destroy($id)
     {
-        //
+        ProfilImposition::where('id',$id)->delete();
+        return redirect()->route('listgeneral.indexor')->with('message_profilimposition', 'le profil a été supprimé');
     }
 }

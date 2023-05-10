@@ -48,6 +48,35 @@ Route::post('/dataManagement/comptebancaire/ajout', [\App\Http\Controllers\Niv1\
 Route::get('/dataManagement/comptebancaire/detail/{id}', [\App\Http\Controllers\Niv1\CompteBancaireController::class, 'edit'])->name('CompteBancaires.edit');
 Route::post('/dataManagement/comptebancaire/màj/{id}', [\App\Http\Controllers\Niv1\CompteBancaireController::class, 'update'])->name('CompteBancaires.update');
 Route::get('/dataManagement/comptebancaire/Suppr/{id}', [\App\Http\Controllers\Niv1\CompteBancaireController::class, 'destroy'])->name('CompteBancaires.destroy');
+//CRUD table domaine
+Route::get('/dataManagement/domaine/new', [\App\Http\Controllers\Niv1\DomaineController::class, 'create'])->name('Domaines.create');
+Route::post('/dataManagement/domaine/ajout', [\App\Http\Controllers\Niv1\DomaineController::class, 'store'])->name('Domaines.store');
+Route::get('/dataManagement/domaine/detail/{id}', [\App\Http\Controllers\Niv1\DomaineController::class, 'edit'])->name('Domaines.edit');
+Route::post('/dataManagement/domaine/màj/{id}', [\App\Http\Controllers\Niv1\DomaineController::class, 'update'])->name('Domaines.update');
+Route::get('/dataManagement/domaine/Suppr/{id}', [\App\Http\Controllers\Niv1\DomaineController::class, 'destroy'])->name('Domaines.destroy');
+//CRUD table profil imposition
+Route::get('/dataManagement/profilimposition/new', [\App\Http\Controllers\Niv1\ProfilImpositionController::class, 'create'])->name('ProfilImpositions.create');
+Route::post('/dataManagement/profilimposition/ajout', [\App\Http\Controllers\Niv1\ProfilImpositionController::class, 'store'])->name('ProfilImpositions.store');
+Route::get('/dataManagement/profilimposition/detail/{id}', [\App\Http\Controllers\Niv1\ProfilImpositionController::class, 'edit'])->name('ProfilImpositions.edit');
+Route::post('/dataManagement/profilimposition/màj/{id}', [\App\Http\Controllers\Niv1\ProfilImpositionController::class, 'update'])->name('ProfilImpositions.update');
+Route::get('/dataManagement/profilimposition/Suppr/{id}', [\App\Http\Controllers\Niv1\ProfilImpositionController::class, 'destroy'])->name('ProfilImpositions.destroy');
+//CRUD table entreprise
+Route::get('/dataManagement/entreprise/new', [\App\Http\Controllers\Niv1\EntrepriseController::class, 'create'])->name('Entreprises.create');
+Route::post('/dataManagement/entreprise/ajout', [\App\Http\Controllers\Niv1\EntrepriseController::class, 'store'])->name('Entreprises.store');
+Route::get('/dataManagement/entreprise/detail/{id}', [\App\Http\Controllers\Niv1\EntrepriseController::class, 'edit'])->name('Entreprises.edit');
+Route::post('/dataManagement/entreprise/màj/{id}', [\App\Http\Controllers\Niv1\EntrepriseController::class, 'update'])->name('Entreprises.update');
+Route::get('/dataManagement/entreprise/Suppr/{id}', [\App\Http\Controllers\Niv1\EntrepriseController::class, 'destroy'])->name('Entreprises.destroy');
+//CRUD table inflation
+Route::get('/dataManagement/inflation/new', [\App\Http\Controllers\Niv1\InflationController::class, 'create'])->name('Inflations.create');
+Route::post('/dataManagement/inflation/ajout', [\App\Http\Controllers\Niv1\InflationController::class, 'store'])->name('Inflations.store');
+Route::get('/dataManagement/inflation/detail/{id}', [\App\Http\Controllers\Niv1\InflationController::class, 'edit'])->name('Inflations.edit');
+Route::post('/dataManagement/inflation/màj/{id}', [\App\Http\Controllers\Niv1\InflationController::class, 'update'])->name('Inflations.update');
+Route::get('/dataManagement/inflation/Suppr/{id}', [\App\Http\Controllers\Niv1\InflationController::class, 'destroy'])->name('Inflations.destroy');
+
+//CRUD table relevé imposition
+
+//CRUD table fiche de paye
+
 
 
 //Page de Consultation des relevés (bancaire, imposition, salaires, inflation)

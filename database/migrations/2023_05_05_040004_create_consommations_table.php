@@ -13,11 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('domaines', function (Blueprint $table) {
+        Schema::create('consommations', function (Blueprint $table) {
             $table->id();
-            $table->string('NomDomaine');
-            $table->string('Unite')->nullable();
-            $table->foreignId('user_id')->nullable()
+            $table->timestamps();
+            $table->decimal('QuantiteConsommee');
+            $table->foreignId('domaine_id')
                         ->constrained()
                         ->onUpdate('cascade')
                         ->onDelete('cascade');
@@ -31,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('domaines');
+        Schema::dropIfExists('consommations');
     }
 };

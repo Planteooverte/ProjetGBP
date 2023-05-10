@@ -31,7 +31,7 @@
                                 <x-text-input id="RefCompte" name="RefCompte" type="number" class="mt-1 block w-full" placeholder="Numero du compte"/>
                                 <x-text-input id="NomBanque" name="NomBanque" type="text" class="mt-1 block w-full" autocomplete="NomBanque" placeholder="Banque"/>
                                 <x-text-input id="Adresse" name="Adresse" type="text" class="mt-1 block w-full" autocomplete="Adresse" placeholder="Adresse"/>
-                                <x-text-input id="user_id" name="user_id" type="hidden" class="mt-1 block w-full" value="{{ Auth::user()->id }}"/>
+                                <x-text-input id="user_id" name="user_id" type="hidden" class="mt-1 block w-full" value="{{ $userid }}"/>
                             </div>
                             @error('compteBancaire')
                                     <p class="help is-danger">{{ $message }}</p>

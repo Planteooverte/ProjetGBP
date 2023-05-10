@@ -13,20 +13,16 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('users_entreprises', function (Blueprint $table) {
+        Schema::create('inflation_user', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
-            $table->softDeletes();
             $table->foreignId('user_id')
                     ->constrained()
                     ->onUpdate('cascade')
                     ->onDelete('cascade');
-            // $table->foreign('idUser')->references('id')->on('users');
-            $table->foreignId('entreprise_id')
+            $table->foreignId('inflation_id')
                     ->constrained()
                     ->onUpdate('cascade')
                     ->onDelete('cascade');
-            // $table->foreign('idEnt')->references('id')->on('entreprises');
         });
     }
 
@@ -37,6 +33,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users_entreprises');
+        Schema::dropIfExists('inflation_user');
     }
 };

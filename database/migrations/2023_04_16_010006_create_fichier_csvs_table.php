@@ -16,7 +16,6 @@ return new class extends Migration
         Schema::create('fichier_csvs', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table_>softDeletes();
             $table->string('NomFichier');
             $table->string('CheminFichier');
         });

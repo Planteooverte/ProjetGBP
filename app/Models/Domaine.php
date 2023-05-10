@@ -17,9 +17,7 @@ class Domaine extends Model
     protected $fillable = [
         'id',
         'NomDomaine',
-        'QuantiteConsommee',
         'Unite',
-        'Annee',
         'user_id',
     ];
 

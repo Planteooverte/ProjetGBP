@@ -13,13 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::disableForeignKeyConstraints();
+        // Schema::disableForeignKeyConstraints();
         Schema::create('compte_bancaires', function (Blueprint $table) {
             $table->id();
             $table->string('RefCompte')->unique();
             $table->string('NomBanque');
             $table->string('Adresse');
-            $table->foreignId('user_id')->nullable()
+            $table->foreignId('user_id')
                         ->constrained()
                         ->onUpdate('cascade')
                         ->onDelete('cascade');

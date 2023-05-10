@@ -3,12 +3,7 @@
         <h2 class="text-lg font-medium text-gray-900">
             {{ __('Relevé d\'imposition') }}
         </h2>
-        <table>
-            <tr>
-                <x-table.td>{{ __("Liste de vos impositions") }}</x-table.td>
-                <x-table.td><x-aprimary-button :href="route('CompteBancaires.create')">{{ __('Créer') }}</x-aprimary-button></x-table.td>
-            </tr>
-        </table>
+        <x-aprimary-button :href="route('CompteBancaires.create')">{{ __('Créer') }}</x-aprimary-button>
     </header>
     <x-table.table :headers="['id', 'Type', 'Année Fiscale', 'Montant', 'Taux']">
         @foreach($RelImpositions as $RelImposition)

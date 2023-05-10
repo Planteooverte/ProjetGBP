@@ -3,12 +3,7 @@
         <h2 class="text-lg font-medium text-gray-900">
             {{ __('Compte Bancaire') }}
         </h2>
-        <table>
-            <tr>
-                <x-table.td>{{ __("Liste de vos comptes bancaires") }}</x-table.td>
-                <x-table.td><x-aprimary-button :href="route('CompteBancaires.create')">{{ __('Créer') }}</x-aprimary-button></x-table.td>
-            </tr>
-        </table>
+        <x-aprimary-button :href="route('CompteBancaires.create')">{{ __('Créer') }}</x-aprimary-button>
     </header>
 
     <x-table.table :headers="['id', 'Numero du compte', 'Banque', 'Adresse', ' ', ' ']">
@@ -23,9 +18,9 @@
             </tr>
         @endforeach
         <!-- Message de réussite -->
-        @if (session()->has('message'))
+        @if (session()->has('message_comptebancaire'))
             <div class="mt-3 mb-4 list-disc list-inside text-sm text-green-600 font-semibold">
-                {{ session('message') }}
+                {{ session('message_comptebancaire') }}
             </div>
         @endif
     </x-table.table> 

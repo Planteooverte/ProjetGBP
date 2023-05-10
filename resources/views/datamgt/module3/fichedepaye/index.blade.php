@@ -3,12 +3,7 @@
         <h2 class="text-lg font-medium text-gray-900">
             {{ __('Fiche de paye') }}
         </h2>
-        <table>
-            <tr>
-                <x-table.td>{{ __("Liste de vos rémunérations") }}</x-table.td>
-                <x-table.td><x-aprimary-button :href="route('CompteBancaires.create')">{{ __('Créer') }}</x-aprimary-button></x-table.td>
-            </tr>
-        </table>
+        <x-aprimary-button :href="route('CompteBancaires.create')">{{ __('Créer') }}</x-aprimary-button>
     </header>
     <x-table.table :headers="['id', 'Periode', 'Salaire Brut', 'Salaire Net ', 'Entreprise']">
         @foreach($FicheDePayes as $FicheDePaye)

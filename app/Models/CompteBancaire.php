@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -25,13 +26,13 @@ class CompteBancaire extends Model
     //suppression de "create_at" et "update_at"
     public $timestamps = false;
 
-    public function Users()
-    { 
-        return $this->belongsTo(User::class); 
+    public function User()
+    {
+        return $this->belongsTo(User::class);
     }
 
     public function OperationBancaires()
-    { 
-        return $this->hasMany(OperationBancaire::class); 
+    {
+        return $this->hasMany(OperationBancaire::class);
     }
 }

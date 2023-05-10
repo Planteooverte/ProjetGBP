@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class User_Inflation extends Model
+class Inflation_User extends Model
 {
     use HasFactory;
 
@@ -16,12 +16,10 @@ class User_Inflation extends Model
      */
     protected $fillable = [
         'id',
-        'Annee',
         'user_id',
-        'inflation_id',
     ];
 
     //suppression de "create_at" et "update_at"
     public $timestamps = false;
-    
+
 }

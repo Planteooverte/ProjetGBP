@@ -13,19 +13,18 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('users_inflations', function (Blueprint $table) {
+        Schema::create('entreprise_user', function (Blueprint $table) {
             $table->id();
-            $table->year('Annee'); 
             $table->foreignId('user_id')
                     ->constrained()
                     ->onUpdate('cascade')
                     ->onDelete('cascade');
             // $table->foreign('idUser')->references('id')->on('users');
-            $table->foreignId('inflation_id')
+            $table->foreignId('entreprise_id')
                     ->constrained()
                     ->onUpdate('cascade')
                     ->onDelete('cascade');
-            // $table->foreign('idInflation')->references('id')->on('inflations');
+            // $table->foreign('idEnt')->references('id')->on('entreprises');
         });
     }
 
@@ -36,6 +35,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users_inflations');
+        Schema::dropIfExists('entreprise_user');
     }
 };
