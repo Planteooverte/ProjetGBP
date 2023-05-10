@@ -1,0 +1,15 @@
+#Suivi Modifications
+Pack001
+#05/05/23   -   Revue MCD : Màj MCD/Migration/Model/Controler/Views
+#           -   Ajout nouvelle table 'Consommation'
+#           -   Dispatch des champs de la table 'Domaine'
+#           -   Création d'un jeu de donnée 'Domaine' par défaut à chaque création d'utilisateur
+#           -   CRUD complet sur table : CompteBancaire, Domaine, ProfilImposition
+#           -   ProfilImposition - Fonctionalité view - un seul profil par utilisateur
+#           -   Mise au standard convention de nommage laraval pour nommage des tables pivots
+#09/05/2023 -   Déplacement des chps DateEntree, DateSortie dans la table entreprise
+#           -   Màj de la table pivot entreprise_user avec methode attach()
+#           -   CRUD complet sur table : Inflation
+#           -   Création d'un jeu de donnée 'Inflation' par dfaut à chaque création d'utilisateur
+#10/05/2023 -   Revue relation belongTo/hasMany cascade constraint. Quel methode associé derrière ?
+#           -   Ajouter champs 'Type' à CompteBancaire: Courant, PEE, Livret A ...
