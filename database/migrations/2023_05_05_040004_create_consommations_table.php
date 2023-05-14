@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('consommations', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
-            $table->decimal('QuantiteConsommee');
+            $table->date('DateReleve');
+            $table->decimal('ReleveCompteur');
             $table->foreignId('domaine_id')
                         ->constrained()
                         ->onUpdate('cascade')

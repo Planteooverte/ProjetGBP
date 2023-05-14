@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Vos organismes') }}
+            {{ __('Vos relevés') }}
         </h2>
     </x-slot>
 
@@ -18,21 +18,26 @@
                     <section>
                         <header>
                             <h2 class="text-lg font-medium text-gray-900">
-                                {{ __('Domaines') }}
+                                {{ __('Consommation') }}
                             </h2>
 
                             <p class="mt-1 text-sm text-gray-600">
-                                {{ __("Ajouter un domaine") }}
+                                {{ __("Ajouter une consommation") }}
                             </p>
                         </header>
-                        <form method='POST' action="{{ route('Domaine.store') }}">
+                        <form method='POST' action="{{ route('Consommations.store') }}">
                             @csrf
                             <div>
-                                <x-text-input id="NomDomaine" name="NomDomaine" type="text" class="mt-1 block w-full" autocomplete="NomDomaine" placeholder="Domaine de service"/>
-                                <x-text-input id="Unite" name="Unite" type="text" class="mt-1 block w-full" autocomplete="Unite" placeholder="Unité"/>
-                                <x-text-input id="user_id" name="user_id" type="hidden" class="mt-1 block w-full" value="{{ $userid }}"/>
+                                <select class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm mt-1 block w-full" name="domaine_id" id="domaine_id">
+                                <option disabled selected class="text-neutral-400">Domaine</option>
+                                @foreach ($Domaines as $Domaine)
+                                    <option value="{{$Domaine->id}}">{{$Domaine->NomDomaine.__(' (en ').$Domaine->Unite.__(')')}}</option>
+                                @endforeach
+                                </select>
+                                <x-text-input id="DateReleve" name="DateReleve" type="text" class="mt-1 block w-full" placeholder="Date du relevé" onfocus="(this.type='date')"/>
+                                <x-text-input id="ReleveCompteur" name="ReleveCompteur" type="number" step="0.01" class="mt-1 block w-full" placeholder="Relevé compteur consommée"/>
                             </div>
-                            @error('compteBancaire')
+                            @error('consommation')
                                     <p class="help is-danger">{{ $message }}</p>
                             @enderror
                             <div class="flex items-center gap-4">

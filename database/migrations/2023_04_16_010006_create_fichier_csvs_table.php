@@ -18,6 +18,10 @@ return new class extends Migration
             $table->timestamps();
             $table->string('NomFichier');
             $table->string('CheminFichier');
+            $table->foreignId('user_id')
+                        ->constrained()
+                        ->onUpdate('cascade')
+                        ->onDelete('cascade');
         });
     }
 

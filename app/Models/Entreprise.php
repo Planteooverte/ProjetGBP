@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model; //Utilisation belongsTo/belongsToMany ...
-use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Collection;
 
 class Entreprise extends Model
 {
@@ -28,12 +28,12 @@ class Entreprise extends Model
 
     public function Users()
     {
-        return $this->belongsToMany(User::class);
+        return $this->belongsToMany(User::class, Employer::class);
     }
 
     public function FicheDePayes()
     {
-        return $this->hasMany(FicheDePaye::class);
+        return $this->belongsTo(FicheDePaye::class);
     }
 
 }

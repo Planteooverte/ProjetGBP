@@ -16,7 +16,15 @@ class ProfilImpositionController extends Controller
      */
     public function index()
     {
-        //Assurer par SuperEditorController
+        //Récupération de l'id de l'utilisateur
+        $userid = Auth::user()->id;
+
+        //Récupération du profil d'imposition d'un utilisateur
+        $ProfilImpositions = ProfilImposition::all()->where('user_id',$userid);
+
+        //Récupération du nombre de profil d'imposition d'un utilisateur pour limitation des créations
+        $NbrProfilImposition = ProfilImposition::all()->where('user_id',$userid)->count();
+        return view('datamgt.module2.profilimposition.index', compact('ProfilImpositions', 'NbrProfilImposition'));
     }
 
     /**
@@ -39,7 +47,7 @@ class ProfilImpositionController extends Controller
     public function store(Request $Request)
     {
         ProfilImposition::create($Request->all());
-        return redirect()->route('listgeneral.indexor')->with('message_profilimposition', 'le profil a été créé');
+        return redirect()->route('ProfilImpositions.index')->with('message_profilimposition', 'le profil a été créé');
     }
 
     /**
@@ -59,7 +67,7 @@ class ProfilImpositionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Request $request, ProfilImposition $ProfilImposition, $id)
+    public function edit(ProfilImposition $ProfilImposition, $id)
     {
         $ProfilImposition = ProfilImposition::findOrFail($id);
         return view('datamgt.module2.profilimposition.edit', compact('ProfilImposition'));
@@ -75,8 +83,8 @@ class ProfilImpositionController extends Controller
     public function update(Request $request, ProfilImposition $ProfilImposition, $id)
     {
         $ProfilImposition = ProfilImposition::findOrFail($id);
-        $ProfilImposition->update($request->all()); 
-        return redirect()->route('listgeneral.indexor')->with('message_profilimposition', 'le profil a été mis à jour'); 
+        $ProfilImposition->update($request->all());
+        return redirect()->route('ProfilImpositions.index')->with('message_profilimposition', 'le profil a été mis à jour');
     }
 
     /**
@@ -88,6 +96,6 @@ class ProfilImpositionController extends Controller
     public function destroy($id)
     {
         ProfilImposition::where('id',$id)->delete();
-        return redirect()->route('listgeneral.indexor')->with('message_profilimposition', 'le profil a été supprimé');
+        return redirect()->route('ProfilImpositions.index')->with('message_profilimposition', 'le profil a été supprimé');
     }
 }

@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Gestion des données') }}
+            {{ __('Vos organismes') }}
         </h2>
     </x-slot>
 
@@ -30,8 +30,8 @@
                             <div>
                                 <x-text-input id="NomEntreprise" name="NomEntreprise" type="text" class="mt-1 block w-full" placeholder="Nom de l'entreprise"/>
                                 <x-text-input id="Adresse" name="Adresse" type="text" class="mt-1 block w-full" placeholder="Adresse"/>
-                                <x-text-input id="Date d'entrée" name="dateEntree" type="date" class="mt-1 block w-full" placeholder="Date d'entrée"/>
-                                <x-text-input id="Date de sortie" name="dateSortie" type="date" class="mt-1 block w-full" placeholder="Date de sortie"/>
+                                <x-text-input id="Date d'entrée" name="dateEntree" type="text" class="mt-1 block w-full" placeholder="Date d'entrée" onfocus="(this.type='date')"/>
+                                <x-text-input id="Date de sortie" name="dateSortie" type="text" class="mt-1 block w-full" placeholder="Date de sortie" onfocus="(this.type='date')"/>
                                 <x-text-input id="user_id" name="user_id" type="hidden" class="mt-1 block w-full" value="{{ $userid }}"/>
                             </div>
                             @error('entreprise')

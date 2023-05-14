@@ -10,6 +10,32 @@ Pack001
 #09/05/2023 -   Déplacement des chps DateEntree, DateSortie dans la table entreprise
 #           -   Màj de la table pivot entreprise_user avec methode attach()
 #           -   CRUD complet sur table : Inflation
-#           -   Création d'un jeu de donnée 'Inflation' par dfaut à chaque création d'utilisateur
-#10/05/2023 -   Revue relation belongTo/hasMany cascade constraint. Quel methode associé derrière ?
-#           -   Ajouter champs 'Type' à CompteBancaire: Courant, PEE, Livret A ...
+#           -   Création d'un jeu de donnée 'Inflation' par défaut à chaque création d'utilisateur
+#10/05/2023 -   Ajouter champs 'Type' à CompteBancaire: Courant, PEE, Livret A ...
+#           -   Récupération de l'ancien choix sur select/option CompteBancaire
+#           -   Constraintes entre User et table premier niveau
+#           -   CRUD complet sur table : Entreprise
+#11/05/2023 -   Revue Menu de navigation en dropdown et découpage indexor() sur les controller Niv1
+#           -   Vérification activation table de premier niveau avant activation table de second niveau
+#           -   Màj les valeurs inflation du jeu de donnée
+#           -   Suppression indexor() - controler supereditor et répartition des fonctions dans les controleurs Niv1
+#           -   CRUD complet sur table : Relevé Imposition
+#12/05/2023 -   Revoir relation HasMany/BelongTo et HasManyThrough + corrections sur les controleurs
+#           -   Correction supprimer valeurs inutile sur update()
+#           -   CRUD complet sur table : Fiche de Paye
+#13/05/2023 -   Màj MCD_V6: Rattachement table : fichier Csv à User + HasMany/BelongTo
+#           -   Ajout Colonne 'Lock' à la table domaine pour activer/desactiver les boutons modifier/supprimer
+#           -   Ajout d'icone cadenas quand Lock est activé
+#           -   CRUD complet sur table : Consommation
+            -   Cohérence au niveau des dates contractuels des entreprises et salaires associé
+            -   Suppression Année Fiscale à remplacer par le calcul date de déclaration - 1
+            -   CSS - Homogénéisation des tableaux / Position du dropdown à revoir
+            -   Page Welcome - Homogénéisation
+            -   Verrouillage Champs formulaire en javascript
+            -   CRUD table fichier CSV, Operation bancaire
+            -   Recherche et association de domaine par mot clef
+            -   upload de fichier pour Operation bancaire
+            -   download de fichier avant suppression d'un compte
+            -   Pagination sur les tableaux
+            -   Traduction formulaire intermediaire
+            -   HighChart

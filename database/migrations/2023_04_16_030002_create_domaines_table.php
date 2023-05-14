@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('NomDomaine');
             $table->string('Unite')->nullable();
+            $table->boolean('Lock')->default(false);
             $table->foreignId('user_id')->nullable()
                         ->constrained()
                         ->onUpdate('cascade')

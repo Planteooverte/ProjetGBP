@@ -10,13 +10,60 @@
                     </a>
                 </div>
 
-                <!-- Navigation Links -->
+                <!-- Navigation Links - Dropdown version -->
+                <div class="hidden sm:flex sm:items-center sm:ml-6">
+                    <x-dropdown>
+                        <x-slot name="trigger">
+                            <button class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150">
+                                <div>{{ __('Vos organismes') }}</div>
+                            </button>
+                        </x-slot>
+                        <x-slot name="content">
+                        <x-dropdown-link :href="route('CompteBancaires.index')">
+                            {{ __('Compte Bancaire') }}
+                        </x-dropdown-link>
+                        <x-dropdown-link :href="route('Domaines.index')">
+                            {{ __('Domaine de service') }}
+                        </x-dropdown-link>
+                        <x-dropdown-link :href="route('ProfilImpositions.index')">
+                            {{ __('Profil d\'imposition') }}
+                        </x-dropdown-link>
+                        <x-dropdown-link :href="route('Entreprises.index')">
+                            {{ __('Employeur') }}
+                        </x-dropdown-link>
+                        <x-dropdown-link :href="route('Inflations.index')">
+                            {{ __('Inflation') }}
+                        </x-dropdown-link>
+                    </x-slot>
+                    </x-dropdown>
+                </div>
+                <div class="hidden sm:flex sm:items-center sm:ml-6">
+                    <x-dropdown>
+                        <x-slot name="trigger">
+                            <button class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150">
+                                <div>{{ __('Vos relevés') }}</div>
+                            </button>
+                        </x-slot>
+                        <x-slot name="content">
+                        <x-dropdown-link :href="route('profile.edit')">
+                            {{ __('Opération bancaire') }}
+                        </x-dropdown-link>
+                        <x-dropdown-link :href="route('Consommations.index')">
+                            {{ __('Consommation') }}
+                        </x-dropdown-link>
+                        <x-dropdown-link :href="route('RelImpositions.index')">
+                            {{ __('Imposition') }}
+                        </x-dropdown-link>
+                        <x-dropdown-link :href="route('FichesDePaye.index')">
+                            {{ __('Fiche de paye') }}
+                        </x-dropdown-link>
+                    </x-slot>
+                    </x-dropdown>
+                </div>
+                <!-- Navigation Links without  -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Tableau de bord') }}
-                    </x-nav-link>
-                    <x-nav-link :href="route('listgeneral.indexor')" :active="request()->routeIs('listgeneral.indexor')">
-                        {{ __('Gestion des données') }}
                     </x-nav-link>
                     <x-nav-link :href="route('report')" :active="request()->routeIs('report')">
                         {{ __('Consultation détaillée') }}
@@ -38,7 +85,7 @@
                             </div>
                         </button>
                     </x-slot>
-                    
+
                     <x-slot name="content">
                         <x-dropdown-link :href="route('profile.edit')">
                             {{ __('Profil') }}
@@ -75,9 +122,6 @@
         <div class="pt-2 pb-3 space-y-1">
             <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                 {{ __('Tableau de bord') }}
-            </x-nav-link>
-            <x-nav-link :href="route('listgeneral.indexor')" :active="request()->routeIs('listgeneral.indexor')">
-                {{ __('Gestion des données') }}
             </x-nav-link>
             <x-nav-link :href="route('report')" :active="request()->routeIs('report')">
                 {{ __('Consultation détaillée') }}

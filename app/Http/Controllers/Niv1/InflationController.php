@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Niv1;
 
 use App\Models\Inflation;
+use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -17,7 +18,12 @@ class InflationController extends Controller
      */
     public function index()
     {
-        //Assurer par SuperEditorController
+        //Récupération de l'id de l'utilisateur
+        $userid = Auth::user()->id;
+
+        //Récupération des inflations associées à l'utilisateur
+        $Inflations = User::findorfail($userid)->Inflations;
+        return view('datamgt.module4.inflation.index', compact('Inflations'));
     }
 
     /**
@@ -42,7 +48,7 @@ class InflationController extends Controller
         //Enregistrement du formulaire de création
         $inflation = Inflation::create($Request->all());
         $inflation->Users()->attach($Request['user_id']);
-        return redirect()->route('listgeneral.indexor')->with('message_inflation', 'l\'inflation a été créée');
+        return redirect()->route('Inflations.index')->with('message_inflation', 'l\'inflation a été créée');
     }
 
     /**
@@ -62,7 +68,7 @@ class InflationController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Request $request, Inflation $Inflation, $id)
+    public function edit(Inflation $Inflation, $id)
     {
         $Inflation = Inflation::findOrFail($id);
         return view('datamgt.module4.inflation.edit', compact('Inflation'));
@@ -78,7 +84,7 @@ class InflationController extends Controller
     public function update(Request $request, $id)
     {
         $Inflation = Inflation::findOrFail($id)->update($request->all());
-        return redirect()->route('listgeneral.indexor')->with('message_inflation', 'l\'inflation a été mise à jour');
+        return redirect()->route('Inflations.index')->with('message_inflation', 'l\'inflation a été mise à jour');
     }
 
     /**
@@ -90,7 +96,7 @@ class InflationController extends Controller
     public function destroy($id)
     {
         Inflation::where('id',$id)->delete();
-        return redirect()->route('listgeneral.indexor')->with('message_inflation', 'l\'inflation a été supprimée');
+        return redirect()->route('Inflations.index')->with('message_inflation', 'l\'inflation a été supprimée');
     }
 
 }

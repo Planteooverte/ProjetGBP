@@ -13,16 +13,15 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::disableForeignKeyConstraints();
         Schema::create('rel_impositions', function (Blueprint $table) {
             $table->id();
-            $table->string('TypeImposition');
-            $table->year('AnneeFiscal');                    /*Année Fiscal */
-            $table->decimal('Montant');
-            $table->datetime('DateEtablissement');          /*Date Etablissement */   
-            $table->float('TauxImposition');
-            $table->decimal('RevenuFiscalDeReference');
-            $table->integer('NbrDePart');
+            $table->string('TypeImposition');       //all
+            $table->date('AnneeFiscal');            //all
+            $table->decimal('Montant');             //all
+            $table->date('DateEtablissement');      //all
+            $table->float('TauxImposition')->nullable();
+            $table->decimal('RevenuFiscalDeReference')->nullable();;
+            $table->integer('NbrDePart')->nullable();;
             $table->foreignId('domaine_id')
                     ->constrained()
                     ->onUpdate('cascade')
@@ -31,11 +30,6 @@ return new class extends Migration
                     ->constrained()
                     ->onUpdate('cascade')
                     ->onDelete('cascade');
-            // $table->foreignId('domaine_id')->nullable();
-            // $table->foreign('domaine_id')->references('id')->on('domaines');
-            // $table->foreignId('centimpot_id')->nullable();
-            // $table->foreign('centimpot_id')->references('id')->on('profil_impositions');
-            
         });
     }
 

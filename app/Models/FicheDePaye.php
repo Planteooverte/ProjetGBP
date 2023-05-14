@@ -28,12 +28,12 @@ class FicheDePaye extends Model
     public $timestamps = false;
 
     public function Domaines()
-    { 
-        return $this->belongsTo(Domaine::class); 
+    {
+        return $this->hasMany(Domaine::class);
     }
 
     public function Entreprises()
-    { 
-        return $this->belongsTo(Entreprise::class); 
+    {
+        return $this->hasMany(Entreprise::class);
     }
 }

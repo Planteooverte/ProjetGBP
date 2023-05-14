@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Gestion des données') }}
+            {{ __('Vos organismes') }}
         </h2>
     </x-slot>
 
@@ -28,7 +28,7 @@
                         <form action="{{ route('Inflations.update', $Inflation->id) }}" method="POST">
                             @csrf
                             <div>
-                                <x-text-input id="TauxMoyen" name="TauxMoyen" type="text" class="mt-1 block w-full" value="{{ old('TauxMoyen', $Inflation->TauxMoyen) }}"/>
+                                <x-text-input id="TauxMoyen" name="TauxMoyen" type="number" step="0.01" class="mt-1 block w-full" value="{{ old('TauxMoyen', $Inflation->TauxMoyen) }}"/>
                                 <x-text-input id="dateInflation" name="dateInflation" type="text" class="mt-1 block w-full" value="{{ old('dateInflation', $Inflation->dateInflation) }}"/>
                             </div>
                             @error('inflation')

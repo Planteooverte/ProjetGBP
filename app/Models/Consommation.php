@@ -16,14 +16,16 @@ class Consommation extends Model
      */
     protected $fillable = [
         'id',
-        'QuantiteConsommee',
-        'created_at',
-        'updated_at',
+        'DateReleve',
+        'ReleveCompteur',
         'domaine_id',
     ];
 
+    //suppression de "create_at" et "update_at"
+    public $timestamps = false;
+
     public function Domaines()
-    { 
-        return $this->belongsTo(Domaine::class); 
+    {
+        return $this->belongsTo(Domaine::class);
     }
 }

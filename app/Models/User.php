@@ -8,7 +8,6 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
-use Illuminate\Database\Eloquent\Model; //Utilisation belongsTo/belongsToMany ...
 
 class User extends Authenticatable implements MustVerifyEmail
 {
@@ -46,6 +45,11 @@ class User extends Authenticatable implements MustVerifyEmail
     ];
 
     //Retour les plusieurs comptebancaire d'un utilisateur
+    public function FichiersCsv()
+    {
+        return $this->hasMany(FichierCsv::class);
+    }
+
     public function CompteBancaires()
     {
         return $this->hasMany(CompteBancaire::class);
@@ -63,12 +67,34 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function Entreprises()
     {
-        return $this->belongsToMany(Entreprise::class)
-                                ->withPivot('dateEntree', 'dateSortie');;
+        return $this->belongsToMany(Entreprise::class, Employer::class);
     }
 
     public function Inflations()
     {
         return $this->belongsToMany(Inflation::class);
     }
+
+    public function FicheDePayes()
+    {
+        return $this->hasManyThrough(   FicheDePaye::class, //Table cible
+                                        Employer::class,    //Table pivot
+                                        'user_id',          //id table pivot en lien avec la table de départ : User
+                                        'entreprise_id',    //id foreign key table cible
+                                        'id',               //id de la table départ
+                                        'entreprise_id'     //id table pivot en lien avec la table cible
+        );
+    }
+
+    public function Consommations()
+    {
+        return $this->hasManyThrough(   Consommation::class,
+                                        Domaine::class,
+                                        'user_id',
+                                        'domaine_id',
+                                        'id',
+                                        'id'
+        );
+    }
+
 }

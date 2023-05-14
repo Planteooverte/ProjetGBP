@@ -13,10 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        // Schema::disableForeignKeyConstraints();
         Schema::create('compte_bancaires', function (Blueprint $table) {
             $table->id();
             $table->string('RefCompte')->unique();
+            $table->string('Type');
             $table->string('NomBanque');
             $table->string('Adresse');
             $table->foreignId('user_id')

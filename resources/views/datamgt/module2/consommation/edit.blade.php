@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Vos organismes') }}
+            {{ __('Vos relevés') }}
         </h2>
     </x-slot>
 
@@ -18,22 +18,25 @@
                     <section>
                         <header>
                             <h2 class="text-lg font-medium text-gray-900">
-                                {{ __('Entreprise') }}
+                                {{ __('Consommation') }}
                             </h2>
 
                             <p class="mt-1 text-sm text-gray-600">
-                                {{ __("Modifier une entreprise") }}
+                                {{ __("Modifier une consommation") }}
                             </p>
                         </header>
-                        <form action="{{ route('Entreprises.update', $Entreprise->id) }}" method="POST">
+                        <form action="{{ route('Consommations.update', $Consommation->id) }}" method="POST">
                             @csrf
                             <div>
-                                <x-text-input id="NomEntreprise" name="NomEntreprise" type="text" class="mt-1 block w-full" value="{{ old('NomEntreprise', $Entreprise->NomEntreprise) }}"/>
-                                <x-text-input id="Adresse" name="Adresse" type="text" class="mt-1 block w-full" value="{{ old('Adresse', $Entreprise->Adresse) }}"/>
-                                <x-text-input id="Date d'entrée" name="dateEntree" type="date" class="mt-1 block w-full" value="{{ old('dateEntree', $Entreprise->dateEntree) }}"/>
-                                <x-text-input id="Date de sortie" name="dateSortie" type="date" class="mt-1 block w-full" value="{{ old('dateSortie', $Entreprise->dateSortie) }}"/>
+                                <select class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm mt-1 block w-full" name="domaine_id" id="domaine_id">
+                                <option disabled selected class="text-neutral-400">Domaine</option>
+                                @foreach ($Domaines as $Domaine)
+                                    <option value="{{ $Domaine->id }}">{{ $Domaine->NomDomaine }}</option>
+                                @endforeach
+                                <x-text-input id="DateReleve" name="DateReleve" type="date" class="mt-1 block w-full" value="{{ old('DateReleve', $Consommation->DateReleve) }}"/>
+                                <x-text-input id="ReleveCompteur" name="ReleveCompteur" type="number" step="0.01" class="mt-1 block w-full" value="{{ old('ReleveCompteur', $Consommation->ReleveCompteur) }}"/>
                             </div>
-                            @error('entreprise')
+                            @error('consommation')
                                     <p class="help is-danger">{{ $message }}</p>
                             @enderror
                             <div class="flex items-center gap-4">

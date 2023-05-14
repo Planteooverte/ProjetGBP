@@ -25,23 +25,28 @@ class Domaine extends Model
     public $timestamps = false;
 
     public function Users()
-    { 
-        return $this->belongsTo(User::class); 
+    {
+        return $this->belongsTo(User::class);
     }
 
     public function OperationBancaires()
-    { 
-        return $this->hasMany(OperationBancaire::class); 
+    {
+        return $this->belongsTo(OperationBancaire::class);
+    }
+
+    public function Consommations()
+    {
+        return $this->hasMany(Consommation::class);
     }
 
     public function RelImpositions()
-    { 
-        return $this->hasMany(RelImposition::class); 
+    {
+        return $this->hasMany(RelImposition::class);
     }
 
     public function FicheDePayes()
-    { 
-        return $this->hasMany(FicheDePaye::class); 
+    {
+        return $this->belongsTo(FicheDePaye::class);
     }
 
 }

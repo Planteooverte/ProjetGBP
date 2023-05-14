@@ -18,6 +18,7 @@ class CompteBancaire extends Model
     protected $fillable = [
         'id',
         'RefCompte',
+        'Type',
         'NomBanque',
         'Adresse',
         'user_id',

@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::disableForeignKeyConstraints();
         Schema::create('fiche_de_payes', function (Blueprint $table) {
             $table->id();
-            $table->datetime('Periode');
+            $table->date('Periode');
             $table->decimal('SalaireBrut');
             $table->decimal('SalaireNet');
             $table->decimal('ChargeEmployeur');

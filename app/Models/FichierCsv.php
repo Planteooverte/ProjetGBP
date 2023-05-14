@@ -23,8 +23,13 @@ class FichierCsv extends Model
         'Deleted_at',
     ];
 
+    public function User()
+    {
+        return $this->belongsTo(User::class);
+    }
+
     public function OperationBancaires()
-    { 
-        return $this->hasMany(OperationBancaire::class); 
+    {
+        return $this->hasMany(OperationBancaire::class);
     }
 }

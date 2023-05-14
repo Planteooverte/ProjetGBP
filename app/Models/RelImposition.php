@@ -26,17 +26,16 @@ class RelImposition extends Model
         'domaine_id',
         'profil_imposition_id',
     ];
-    
-    //suppression de "create_at" et "update_at"
+
     public $timestamps = false;
 
     public function Domaines()
-    { 
-        return $this->belongsTo(Domaine::class); 
+    {
+        return $this->belongsTo(Domaine::class);
     }
 
     public function ProfilImpositions()
-    { 
-        return $this->belongsTo(ProfilImposition::class); 
+    {
+        return $this->belongsTo(ProfilImposition::class);
     }
 }
