@@ -21,7 +21,7 @@ Route::get('/', function () {
     return view('welcome2');
 });
 
-//Brezze Page Dashboard
+//Breeze Page Dashboard
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
@@ -83,12 +83,22 @@ Route::post('/dataManagement/consommation/ajout', [\App\Http\Controllers\Niv1\Co
 Route::get('/dataManagement/consommation/detail/{id}', [\App\Http\Controllers\Niv1\ConsommationController::class, 'edit'])->name('Consommations.edit');
 Route::post('/dataManagement/consommation/màj/{id}', [\App\Http\Controllers\Niv1\ConsommationController::class, 'update'])->name('Consommations.update');
 Route::get('/dataManagement/consommation/Suppr/{id}', [\App\Http\Controllers\Niv1\ConsommationController::class, 'destroy'])->name('Consommations.destroy');
+
+//UPLOAD Files
+Route::get('/dataManagement/upload-file/list', [\App\Http\Controllers\Niv1\FichierCsvController::class, 'index'])->name('FichierCsvs.index');
+Route::get('/dataManagement/upload-file', [\App\Http\Controllers\Niv1\FichierCsvController::class, 'create'])->name('FichierCsvs.create');
+Route::post('/dataManagement/upload-file', [\App\Http\Controllers\Niv1\FichierCsvController::class, 'fileuploadandstore'])->name('FichierCsvs.upload');
+Route::get('/dataManagement/upload-file/Suppr/{id}', [\App\Http\Controllers\Niv1\FichierCsvController::class, 'destroy'])->name('FichierCsvs.destroy');
+
 //CRUD table opération bancaire
+Route::get('/dataManagement/operations-bancaire/vueimport', [\App\Http\Controllers\Niv1\OperationBancaireController::class, 'show'])->name('OperationBancaire.index');
+Route::get('/dataManagement/operations-bancaire/import', [\App\Http\Controllers\Niv1\OperationBancaireController::class, 'store'])->name('OperationBancaire.index');
+
 
 //Page de Consultation des relevés (bancaire, imposition, salaires, inflation)
 Route::get('/report', function () { return view('report'); })->name('report');
 
-//Brezze Authentification
+//Breeze Authentification
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

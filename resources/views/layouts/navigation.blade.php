@@ -60,13 +60,27 @@
                     </x-slot>
                     </x-dropdown>
                 </div>
+                    <div class="hidden sm:flex sm:items-center sm:ml-6">
+                    <x-dropdown>
+                        <x-slot name="trigger">
+                            <button class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150">
+                                <div>{{ __('Vos fichiers') }}</div>
+                            </button>
+                        </x-slot>
+                        <x-slot name="content">
+                        <x-dropdown-link :href="route('FichierCsvs.index')">
+                            {{ __('Déposer vos données') }}
+                        </x-dropdown-link>
+                        <x-dropdown-link :href="route('profile.edit')">
+                            {{ __('Récupérer vos données ') }}
+                        </x-dropdown-link>
+                    </x-slot>
+                    </x-dropdown>
+                </div>
                 <!-- Navigation Links without  -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Tableau de bord') }}
-                    </x-nav-link>
-                    <x-nav-link :href="route('report')" :active="request()->routeIs('report')">
-                        {{ __('Consultation détaillée') }}
                     </x-nav-link>
                 </div>
             </div>

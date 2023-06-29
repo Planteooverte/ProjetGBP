@@ -6,8 +6,6 @@ use App\Models\CompteBancaire;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
-use App\Http\Requests\CompteBancaire as CompteBancaireRequest;
-
 
 class CompteBancaireController extends Controller
 {
@@ -21,7 +19,7 @@ class CompteBancaireController extends Controller
         //Récupération de l'id de l'utilisateur
         $userid = Auth::user()->id;
 
-        //Récupération des compte bancaire lié à un utilisateur
+        //Récupération des comptes bancaires lié à un utilisateur
         $CompteBancaires = CompteBancaire::all()->where('user_id',$userid);
         return view('datamgt.module1.comptebancaire.index', compact('CompteBancaires'));
     }

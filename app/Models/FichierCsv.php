@@ -18,9 +18,10 @@ class FichierCsv extends Model
         'id',
         'NomFichier',
         'CheminFichier',
-        'Created_at',
-        'Updated_at',
-        'Deleted_at',
+        'created_at',
+        'updated_at',
+        'deleted_at',
+        'user_id',
     ];
 
     public function User()
